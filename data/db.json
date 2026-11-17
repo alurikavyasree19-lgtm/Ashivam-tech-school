@@ -1,0 +1,4270 @@
+{
+  "seedVersion": 5,
+  "users": [
+    {
+      "id": "u1",
+      "name": "Dr. R. K. Verma",
+      "email": "admin@ashivam.edu",
+      "passwordHash": "$2b$10$ojoYd.TcQFnXCvIignOYjeHiMNCBuhutspmoSFVNb6m6gCd2RIGNi",
+      "role": "admin"
+    },
+    {
+      "id": "u2",
+      "name": "Mrs. Vannani Rao",
+      "email": "vannani@ashivam.edu",
+      "passwordHash": "$2b$10$C8VH3xHDgDX1nZTETKEJde5DqjmRTzTCH4JGU9.EkBLu4tats38rC",
+      "role": "teacher",
+      "teacherId": "T106",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A",
+        "5th-A"
+      ],
+      "subjects": [
+        "Maths"
+      ]
+    },
+    {
+      "id": "u3",
+      "name": "Mr. Rajesh Sharma",
+      "email": "sharma@ashivam.edu",
+      "passwordHash": "$2b$10$NT.1LnMYto50wIm2187hzei3bV0DVF/hGi7CgNd4fqs.FMUkDQOfW",
+      "role": "teacher",
+      "teacherId": "T104",
+      "assignedClasses": [
+        "1st-A",
+        "1st-B",
+        "2nd-A"
+      ],
+      "subjects": [
+        "English"
+      ]
+    },
+    {
+      "id": "u4",
+      "name": "Mr. Anil Kumar",
+      "email": "kumar@ashivam.edu",
+      "passwordHash": "$2b$10$D67m1zRfMsAsF7VFOWnb9uhWq6nLo9IM0dytrhvKQ/qYjwBi7NfWS",
+      "role": "parent",
+      "childrenIds": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "id": "u5",
+      "name": "Mrs. Sunita Singh",
+      "email": "singh@ashivam.edu",
+      "passwordHash": "$2b$10$1kOVc9BjvqeKlE6rO13CZufAgz5VgTbxcGLCvwwqMQYaX4swjKEqW",
+      "role": "parent",
+      "childrenIds": [
+        "s3"
+      ]
+    },
+    {
+      "id": "u_stud_1",
+      "name": "Aarav Patel",
+      "email": "aarav101@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S101",
+      "rollNumber": 101,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_2",
+      "name": "Diya Sharma",
+      "email": "diya102@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S102",
+      "rollNumber": 102,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_3",
+      "name": "Rohan Verma",
+      "email": "rohan103@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S103",
+      "rollNumber": 103,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_4",
+      "name": "Sneha Reddy",
+      "email": "sneha104@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S104",
+      "rollNumber": 104,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_5",
+      "name": "Kiran Kumar",
+      "email": "kiran105@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S105",
+      "rollNumber": 105,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_6",
+      "name": "Priya Nair",
+      "email": "priya106@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S106",
+      "rollNumber": 106,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_7",
+      "name": "Vikram Joshi",
+      "email": "vikram107@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S107",
+      "rollNumber": 107,
+      "class": "1st",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_8",
+      "name": "Vivaan Rao",
+      "email": "vivaan108@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S108",
+      "rollNumber": 108,
+      "class": "1st",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_9",
+      "name": "Aditya Menon",
+      "email": "aditya109@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S109",
+      "rollNumber": 109,
+      "class": "1st",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_10",
+      "name": "Vihaan Gupta",
+      "email": "vihaan110@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S110",
+      "rollNumber": 110,
+      "class": "1st",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_11",
+      "name": "Arjun Reddy",
+      "email": "arjun111@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S111",
+      "rollNumber": 111,
+      "class": "1st",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_12",
+      "name": "Sai Teja",
+      "email": "sai112@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S112",
+      "rollNumber": 112,
+      "class": "1st",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_13",
+      "name": "Sai Teja",
+      "email": "sai@gmail.com",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S113",
+      "rollNumber": 113,
+      "class": "2nd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_14",
+      "name": "Ayaan Khan",
+      "email": "ayaan114@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S114",
+      "rollNumber": 114,
+      "class": "2nd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_15",
+      "name": "Krishna Murthy",
+      "email": "krishna115@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S115",
+      "rollNumber": 115,
+      "class": "2nd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_16",
+      "name": "Ishaan Iyer",
+      "email": "ishaan116@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S116",
+      "rollNumber": 116,
+      "class": "2nd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_17",
+      "name": "Sanya Kapoor",
+      "email": "sanya117@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S117",
+      "rollNumber": 117,
+      "class": "2nd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_18",
+      "name": "Riya Deshmukh",
+      "email": "riya118@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S118",
+      "rollNumber": 118,
+      "class": "2nd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_19",
+      "name": "Aadhya Kulkarni",
+      "email": "aadhya119@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S119",
+      "rollNumber": 119,
+      "class": "2nd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_20",
+      "name": "Shanaya Bose",
+      "email": "shanaya120@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S120",
+      "rollNumber": 120,
+      "class": "2nd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_21",
+      "name": "Meera Pillai",
+      "email": "meera121@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S121",
+      "rollNumber": 121,
+      "class": "2nd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_22",
+      "name": "Navya Hegde",
+      "email": "navya122@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S122",
+      "rollNumber": 122,
+      "class": "2nd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_23",
+      "name": "Pooja Bhat",
+      "email": "pooja123@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S123",
+      "rollNumber": 123,
+      "class": "2nd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_24",
+      "name": "Neha Agarwal",
+      "email": "neha124@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S124",
+      "rollNumber": 124,
+      "class": "2nd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_25",
+      "name": "Rahul Kumar",
+      "email": "rahul@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S125",
+      "rollNumber": 125,
+      "class": "3rd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_26",
+      "name": "Varun Shetty",
+      "email": "varun126@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S126",
+      "rollNumber": 126,
+      "class": "3rd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_27",
+      "name": "Karthik Rao",
+      "email": "karthik127@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S127",
+      "rollNumber": 127,
+      "class": "3rd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_28",
+      "name": "Amit Tiwari",
+      "email": "amit128@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S128",
+      "rollNumber": 128,
+      "class": "3rd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_29",
+      "name": "Sumit Mishra",
+      "email": "sumit129@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S129",
+      "rollNumber": 129,
+      "class": "3rd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_30",
+      "name": "Deepak Dubey",
+      "email": "deepak130@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S130",
+      "rollNumber": 130,
+      "class": "3rd",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_31",
+      "name": "Manish Saxena",
+      "email": "manish131@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S131",
+      "rollNumber": 131,
+      "class": "3rd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_32",
+      "name": "Suresh Babu",
+      "email": "suresh132@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S132",
+      "rollNumber": 132,
+      "class": "3rd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_33",
+      "name": "Ramesh Naidu",
+      "email": "ramesh133@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S133",
+      "rollNumber": 133,
+      "class": "3rd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_34",
+      "name": "Sunita Devi",
+      "email": "sunita134@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S134",
+      "rollNumber": 134,
+      "class": "3rd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_35",
+      "name": "Geeta Rani",
+      "email": "geeta135@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S135",
+      "rollNumber": 135,
+      "class": "3rd",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_36",
+      "name": "Ananya Singh",
+      "email": "ananya@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S136",
+      "rollNumber": 136,
+      "class": "4th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_37",
+      "name": "Kavitha Gowda",
+      "email": "kavitha137@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S137",
+      "rollNumber": 137,
+      "class": "4th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_38",
+      "name": "Siddharth Roy",
+      "email": "siddharth138@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S138",
+      "rollNumber": 138,
+      "class": "4th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_39",
+      "name": "Nikhil Das",
+      "email": "nikhil139@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S139",
+      "rollNumber": 139,
+      "class": "4th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_40",
+      "name": "Abhishek Sen",
+      "email": "abhishek140@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S140",
+      "rollNumber": 140,
+      "class": "4th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_41",
+      "name": "Akash Choudhary",
+      "email": "akash141@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S141",
+      "rollNumber": 141,
+      "class": "4th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_42",
+      "name": "Alok Bansal",
+      "email": "alok142@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S142",
+      "rollNumber": 142,
+      "class": "4th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_43",
+      "name": "Aniket Chauhan",
+      "email": "aniket143@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S143",
+      "rollNumber": 143,
+      "class": "4th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_44",
+      "name": "Bhavana Prasad",
+      "email": "bhavana144@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S144",
+      "rollNumber": 144,
+      "class": "4th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_45",
+      "name": "Charan Teja",
+      "email": "charan145@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S145",
+      "rollNumber": 145,
+      "class": "4th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_46",
+      "name": "Kavya Kumar",
+      "email": "kavya@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S146",
+      "rollNumber": 146,
+      "class": "5th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_47",
+      "name": "Eshwar Rao",
+      "email": "eshwar147@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S147",
+      "rollNumber": 147,
+      "class": "5th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_48",
+      "name": "Ganesh Naik",
+      "email": "ganesh148@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S148",
+      "rollNumber": 148,
+      "class": "5th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_49",
+      "name": "Harsh Vardhan",
+      "email": "harsh149@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S149",
+      "rollNumber": 149,
+      "class": "5th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_50",
+      "name": "Jatin Arora",
+      "email": "jatin150@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S150",
+      "rollNumber": 150,
+      "class": "5th",
+      "section": "A"
+    },
+    {
+      "id": "u_stud_51",
+      "name": "Lokesh Yadav",
+      "email": "lokesh151@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S151",
+      "rollNumber": 151,
+      "class": "5th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_52",
+      "name": "Mohit Sharma",
+      "email": "mohit152@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S152",
+      "rollNumber": 152,
+      "class": "5th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_53",
+      "name": "Kavya Kumar",
+      "email": "kavya153@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S153",
+      "rollNumber": 153,
+      "class": "5th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_54",
+      "name": "Rahul Kumar",
+      "email": "rahul154@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S154",
+      "rollNumber": 154,
+      "class": "5th",
+      "section": "B"
+    },
+    {
+      "id": "u_stud_55",
+      "name": "Ananya Singh",
+      "email": "ananya155@ashivam.edu",
+      "passwordHash": "$2b$10$pGWvukI6nQPvbNS8UOU6WOWwndgaqyexxgTwCm34KX76BGQum.9YC",
+      "role": "student",
+      "studentId": "S155",
+      "rollNumber": 155,
+      "class": "5th",
+      "section": "B"
+    },
+    {
+      "id": "u_1794912210218",
+      "name": "arjun",
+      "email": "arjun@101",
+      "passwordHash": "$2b$10$B9CUIg3n4X8rkT6DTfSYxuFReIfevr64T1.03iD8in59PxZ3HPUge",
+      "role": "student",
+      "studentId": "S156",
+      "rollNumber": 156,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_1794912613801",
+      "name": "kiran",
+      "email": "kiran@123",
+      "passwordHash": "$2b$10$4LKqlk8MXTDb.Wxp8Ysq2.cI2bHYIb1prrp880yb7Qpq06nLrrgKO",
+      "role": "student",
+      "studentId": "S157",
+      "rollNumber": 157,
+      "class": "3rd",
+      "section": "A"
+    }
+  ],
+  "students": [
+    {
+      "id": "s_101",
+      "studentId": "S101",
+      "rollNumber": 101,
+      "fullName": "Aarav Patel",
+      "email": "aarav101@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "1st",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 101, Green Valley",
+      "parentName": "Parent of Aarav",
+      "parentEmail": "parent101@ashivam.edu",
+      "parentPhone": "+91 98765 10101",
+      "attendancePercentage": 89,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_102",
+      "studentId": "S102",
+      "rollNumber": 102,
+      "fullName": "Diya Sharma",
+      "email": "diya102@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "1st",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 102, Green Valley",
+      "parentName": "Parent of Diya",
+      "parentEmail": "parent102@ashivam.edu",
+      "parentPhone": "+91 98765 10102",
+      "attendancePercentage": 90,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_103",
+      "studentId": "S103",
+      "rollNumber": 103,
+      "fullName": "Rohan Verma",
+      "email": "rohan103@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "1st",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 103, Green Valley",
+      "parentName": "Parent of Rohan",
+      "parentEmail": "parent103@ashivam.edu",
+      "parentPhone": "+91 98765 10103",
+      "attendancePercentage": 91,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_104",
+      "studentId": "S104",
+      "rollNumber": 104,
+      "fullName": "Sneha Reddy",
+      "email": "sneha104@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "1st",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 104, Green Valley",
+      "parentName": "Parent of Sneha",
+      "parentEmail": "parent104@ashivam.edu",
+      "parentPhone": "+91 98765 10104",
+      "attendancePercentage": 92,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_105",
+      "studentId": "S105",
+      "rollNumber": 105,
+      "fullName": "Kiran Kumar",
+      "email": "kiran105@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "1st",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 105, Green Valley",
+      "parentName": "Parent of Kiran",
+      "parentEmail": "parent105@ashivam.edu",
+      "parentPhone": "+91 98765 10105",
+      "attendancePercentage": 93,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_106",
+      "studentId": "S106",
+      "rollNumber": 106,
+      "fullName": "Priya Nair",
+      "email": "priya106@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "1st",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 106, Green Valley",
+      "parentName": "Parent of Priya",
+      "parentEmail": "parent106@ashivam.edu",
+      "parentPhone": "+91 98765 10106",
+      "attendancePercentage": 94,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_107",
+      "studentId": "S107",
+      "rollNumber": 107,
+      "fullName": "Vikram Joshi",
+      "email": "vikram107@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "1st",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 107, Green Valley",
+      "parentName": "Parent of Vikram",
+      "parentEmail": "parent107@ashivam.edu",
+      "parentPhone": "+91 98765 10107",
+      "attendancePercentage": 95,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_108",
+      "studentId": "S108",
+      "rollNumber": 108,
+      "fullName": "Vivaan Rao",
+      "email": "vivaan108@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "1st",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 108, Green Valley",
+      "parentName": "Parent of Vivaan",
+      "parentEmail": "parent108@ashivam.edu",
+      "parentPhone": "+91 98765 10108",
+      "attendancePercentage": 96,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_109",
+      "studentId": "S109",
+      "rollNumber": 109,
+      "fullName": "Aditya Menon",
+      "email": "aditya109@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "1st",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 109, Green Valley",
+      "parentName": "Parent of Aditya",
+      "parentEmail": "parent109@ashivam.edu",
+      "parentPhone": "+91 98765 10109",
+      "attendancePercentage": 97,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_110",
+      "studentId": "S110",
+      "rollNumber": 110,
+      "fullName": "Vihaan Gupta",
+      "email": "vihaan110@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "1st",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 110, Green Valley",
+      "parentName": "Parent of Vihaan",
+      "parentEmail": "parent110@ashivam.edu",
+      "parentPhone": "+91 98765 10110",
+      "attendancePercentage": 98,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_111",
+      "studentId": "S111",
+      "rollNumber": 111,
+      "fullName": "Arjun Reddy",
+      "email": "arjun111@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "1st",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 111, Green Valley",
+      "parentName": "Parent of Arjun",
+      "parentEmail": "parent111@ashivam.edu",
+      "parentPhone": "+91 98765 10111",
+      "attendancePercentage": 89,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_112",
+      "studentId": "S112",
+      "rollNumber": 112,
+      "fullName": "Sai Teja",
+      "email": "sai112@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "1st",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 112, Green Valley",
+      "parentName": "Parent of Sai",
+      "parentEmail": "parent112@ashivam.edu",
+      "parentPhone": "+91 98765 10112",
+      "attendancePercentage": 90,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s4",
+      "studentId": "S113",
+      "rollNumber": 113,
+      "fullName": "Sai Teja",
+      "email": "sai@gmail.com",
+      "dob": "2015-05-12",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "Plot 42, Green Valley",
+      "parentName": "Mr. Srinivas Rao",
+      "parentEmail": "srinivas@ashivam.edu",
+      "parentPhone": "+91 98480 12345",
+      "attendancePercentage": 95,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_114",
+      "studentId": "S114",
+      "rollNumber": 114,
+      "fullName": "Ayaan Khan",
+      "email": "ayaan114@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 114, Green Valley",
+      "parentName": "Parent of Ayaan",
+      "parentEmail": "parent114@ashivam.edu",
+      "parentPhone": "+91 98765 10114",
+      "attendancePercentage": 92,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_115",
+      "studentId": "S115",
+      "rollNumber": 115,
+      "fullName": "Krishna Murthy",
+      "email": "krishna115@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "2nd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 115, Green Valley",
+      "parentName": "Parent of Krishna",
+      "parentEmail": "parent115@ashivam.edu",
+      "parentPhone": "+91 98765 10115",
+      "attendancePercentage": 93,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_116",
+      "studentId": "S116",
+      "rollNumber": 116,
+      "fullName": "Ishaan Iyer",
+      "email": "ishaan116@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 116, Green Valley",
+      "parentName": "Parent of Ishaan",
+      "parentEmail": "parent116@ashivam.edu",
+      "parentPhone": "+91 98765 10116",
+      "attendancePercentage": 94,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_117",
+      "studentId": "S117",
+      "rollNumber": 117,
+      "fullName": "Sanya Kapoor",
+      "email": "sanya117@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "2nd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 117, Green Valley",
+      "parentName": "Parent of Sanya",
+      "parentEmail": "parent117@ashivam.edu",
+      "parentPhone": "+91 98765 10117",
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_118",
+      "studentId": "S118",
+      "rollNumber": 118,
+      "fullName": "Riya Deshmukh",
+      "email": "riya118@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 118, Green Valley",
+      "parentName": "Parent of Riya",
+      "parentEmail": "parent118@ashivam.edu",
+      "parentPhone": "+91 98765 10118",
+      "attendancePercentage": 96,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_119",
+      "studentId": "S119",
+      "rollNumber": 119,
+      "fullName": "Aadhya Kulkarni",
+      "email": "aadhya119@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "2nd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 119, Green Valley",
+      "parentName": "Parent of Aadhya",
+      "parentEmail": "parent119@ashivam.edu",
+      "parentPhone": "+91 98765 10119",
+      "attendancePercentage": 97,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_120",
+      "studentId": "S120",
+      "rollNumber": 120,
+      "fullName": "Shanaya Bose",
+      "email": "shanaya120@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 120, Green Valley",
+      "parentName": "Parent of Shanaya",
+      "parentEmail": "parent120@ashivam.edu",
+      "parentPhone": "+91 98765 10120",
+      "attendancePercentage": 98,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_121",
+      "studentId": "S121",
+      "rollNumber": 121,
+      "fullName": "Meera Pillai",
+      "email": "meera121@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "2nd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 121, Green Valley",
+      "parentName": "Parent of Meera",
+      "parentEmail": "parent121@ashivam.edu",
+      "parentPhone": "+91 98765 10121",
+      "attendancePercentage": 89,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_122",
+      "studentId": "S122",
+      "rollNumber": 122,
+      "fullName": "Navya Hegde",
+      "email": "navya122@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 122, Green Valley",
+      "parentName": "Parent of Navya",
+      "parentEmail": "parent122@ashivam.edu",
+      "parentPhone": "+91 98765 10122",
+      "attendancePercentage": 90,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_123",
+      "studentId": "S123",
+      "rollNumber": 123,
+      "fullName": "Pooja Bhat",
+      "email": "pooja123@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "2nd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 123, Green Valley",
+      "parentName": "Parent of Pooja",
+      "parentEmail": "parent123@ashivam.edu",
+      "parentPhone": "+91 98765 10123",
+      "attendancePercentage": 91,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_124",
+      "studentId": "S124",
+      "rollNumber": 124,
+      "fullName": "Neha Agarwal",
+      "email": "neha124@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 124, Green Valley",
+      "parentName": "Parent of Neha",
+      "parentEmail": "parent124@ashivam.edu",
+      "parentPhone": "+91 98765 10124",
+      "attendancePercentage": 92,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s2",
+      "studentId": "S125",
+      "rollNumber": 125,
+      "fullName": "Rahul Kumar",
+      "email": "rahul@ashivam.edu",
+      "dob": "2015-05-12",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "Plot 42, Green Valley",
+      "parentName": "Mr. Anil Kumar",
+      "parentEmail": "kumar@ashivam.edu",
+      "parentPhone": "+91 98765 43210",
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_126",
+      "studentId": "S126",
+      "rollNumber": 126,
+      "fullName": "Varun Shetty",
+      "email": "varun126@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 126, Green Valley",
+      "parentName": "Parent of Varun",
+      "parentEmail": "parent126@ashivam.edu",
+      "parentPhone": "+91 98765 10126",
+      "attendancePercentage": 94,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_127",
+      "studentId": "S127",
+      "rollNumber": 127,
+      "fullName": "Karthik Rao",
+      "email": "karthik127@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "3rd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 127, Green Valley",
+      "parentName": "Parent of Karthik",
+      "parentEmail": "parent127@ashivam.edu",
+      "parentPhone": "+91 98765 10127",
+      "attendancePercentage": 95,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_128",
+      "studentId": "S128",
+      "rollNumber": 128,
+      "fullName": "Amit Tiwari",
+      "email": "amit128@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 128, Green Valley",
+      "parentName": "Parent of Amit",
+      "parentEmail": "parent128@ashivam.edu",
+      "parentPhone": "+91 98765 10128",
+      "attendancePercentage": 96,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_129",
+      "studentId": "S129",
+      "rollNumber": 129,
+      "fullName": "Sumit Mishra",
+      "email": "sumit129@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "3rd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 129, Green Valley",
+      "parentName": "Parent of Sumit",
+      "parentEmail": "parent129@ashivam.edu",
+      "parentPhone": "+91 98765 10129",
+      "attendancePercentage": 97,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_130",
+      "studentId": "S130",
+      "rollNumber": 130,
+      "fullName": "Deepak Dubey",
+      "email": "deepak130@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 130, Green Valley",
+      "parentName": "Parent of Deepak",
+      "parentEmail": "parent130@ashivam.edu",
+      "parentPhone": "+91 98765 10130",
+      "attendancePercentage": 98,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_131",
+      "studentId": "S131",
+      "rollNumber": 131,
+      "fullName": "Manish Saxena",
+      "email": "manish131@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "3rd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 131, Green Valley",
+      "parentName": "Parent of Manish",
+      "parentEmail": "parent131@ashivam.edu",
+      "parentPhone": "+91 98765 10131",
+      "attendancePercentage": 89,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_132",
+      "studentId": "S132",
+      "rollNumber": 132,
+      "fullName": "Suresh Babu",
+      "email": "suresh132@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 132, Green Valley",
+      "parentName": "Parent of Suresh",
+      "parentEmail": "parent132@ashivam.edu",
+      "parentPhone": "+91 98765 10132",
+      "attendancePercentage": 90,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_133",
+      "studentId": "S133",
+      "rollNumber": 133,
+      "fullName": "Ramesh Naidu",
+      "email": "ramesh133@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "3rd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 133, Green Valley",
+      "parentName": "Parent of Ramesh",
+      "parentEmail": "parent133@ashivam.edu",
+      "parentPhone": "+91 98765 10133",
+      "attendancePercentage": 91,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_134",
+      "studentId": "S134",
+      "rollNumber": 134,
+      "fullName": "Sunita Devi",
+      "email": "sunita134@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 134, Green Valley",
+      "parentName": "Parent of Sunita",
+      "parentEmail": "parent134@ashivam.edu",
+      "parentPhone": "+91 98765 10134",
+      "attendancePercentage": 92,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_135",
+      "studentId": "S135",
+      "rollNumber": 135,
+      "fullName": "Geeta Rani",
+      "email": "geeta135@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "3rd",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 135, Green Valley",
+      "parentName": "Parent of Geeta",
+      "parentEmail": "parent135@ashivam.edu",
+      "parentPhone": "+91 98765 10135",
+      "attendancePercentage": 93,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s3",
+      "studentId": "S136",
+      "rollNumber": 136,
+      "fullName": "Ananya Singh",
+      "email": "ananya@ashivam.edu",
+      "dob": "2015-05-12",
+      "gender": "Female",
+      "class": "4th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "Plot 42, Green Valley",
+      "parentName": "Mrs. Sunita Singh",
+      "parentEmail": "singh@ashivam.edu",
+      "parentPhone": "+91 91234 56789",
+      "attendancePercentage": 95,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_137",
+      "studentId": "S137",
+      "rollNumber": 137,
+      "fullName": "Kavitha Gowda",
+      "email": "kavitha137@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "4th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 137, Green Valley",
+      "parentName": "Parent of Kavitha",
+      "parentEmail": "parent137@ashivam.edu",
+      "parentPhone": "+91 98765 10137",
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_138",
+      "studentId": "S138",
+      "rollNumber": 138,
+      "fullName": "Siddharth Roy",
+      "email": "siddharth138@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "4th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 138, Green Valley",
+      "parentName": "Parent of Siddharth",
+      "parentEmail": "parent138@ashivam.edu",
+      "parentPhone": "+91 98765 10138",
+      "attendancePercentage": 96,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_139",
+      "studentId": "S139",
+      "rollNumber": 139,
+      "fullName": "Nikhil Das",
+      "email": "nikhil139@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "4th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 139, Green Valley",
+      "parentName": "Parent of Nikhil",
+      "parentEmail": "parent139@ashivam.edu",
+      "parentPhone": "+91 98765 10139",
+      "attendancePercentage": 97,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_140",
+      "studentId": "S140",
+      "rollNumber": 140,
+      "fullName": "Abhishek Sen",
+      "email": "abhishek140@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "4th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 140, Green Valley",
+      "parentName": "Parent of Abhishek",
+      "parentEmail": "parent140@ashivam.edu",
+      "parentPhone": "+91 98765 10140",
+      "attendancePercentage": 98,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_141",
+      "studentId": "S141",
+      "rollNumber": 141,
+      "fullName": "Akash Choudhary",
+      "email": "akash141@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "4th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 141, Green Valley",
+      "parentName": "Parent of Akash",
+      "parentEmail": "parent141@ashivam.edu",
+      "parentPhone": "+91 98765 10141",
+      "attendancePercentage": 89,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_142",
+      "studentId": "S142",
+      "rollNumber": 142,
+      "fullName": "Alok Bansal",
+      "email": "alok142@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "4th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 142, Green Valley",
+      "parentName": "Parent of Alok",
+      "parentEmail": "parent142@ashivam.edu",
+      "parentPhone": "+91 98765 10142",
+      "attendancePercentage": 90,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_143",
+      "studentId": "S143",
+      "rollNumber": 143,
+      "fullName": "Aniket Chauhan",
+      "email": "aniket143@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "4th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 143, Green Valley",
+      "parentName": "Parent of Aniket",
+      "parentEmail": "parent143@ashivam.edu",
+      "parentPhone": "+91 98765 10143",
+      "attendancePercentage": 91,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_144",
+      "studentId": "S144",
+      "rollNumber": 144,
+      "fullName": "Bhavana Prasad",
+      "email": "bhavana144@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "4th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 144, Green Valley",
+      "parentName": "Parent of Bhavana",
+      "parentEmail": "parent144@ashivam.edu",
+      "parentPhone": "+91 98765 10144",
+      "attendancePercentage": 92,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_145",
+      "studentId": "S145",
+      "rollNumber": 145,
+      "fullName": "Charan Teja",
+      "email": "charan145@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "4th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 145, Green Valley",
+      "parentName": "Parent of Charan",
+      "parentEmail": "parent145@ashivam.edu",
+      "parentPhone": "+91 98765 10145",
+      "attendancePercentage": 93,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s1",
+      "studentId": "S146",
+      "rollNumber": 146,
+      "fullName": "Kavya Kumar",
+      "email": "kavya@ashivam.edu",
+      "dob": "2015-05-12",
+      "gender": "Female",
+      "class": "5th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "Plot 42, Green Valley",
+      "parentName": "Mr. Anil Kumar",
+      "parentEmail": "kumar@ashivam.edu",
+      "parentPhone": "+91 98765 43210",
+      "attendancePercentage": 95,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_147",
+      "studentId": "S147",
+      "rollNumber": 147,
+      "fullName": "Eshwar Rao",
+      "email": "eshwar147@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "5th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 147, Green Valley",
+      "parentName": "Parent of Eshwar",
+      "parentEmail": "parent147@ashivam.edu",
+      "parentPhone": "+91 98765 10147",
+      "attendancePercentage": 95,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_148",
+      "studentId": "S148",
+      "rollNumber": 148,
+      "fullName": "Ganesh Naik",
+      "email": "ganesh148@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "5th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 148, Green Valley",
+      "parentName": "Parent of Ganesh",
+      "parentEmail": "parent148@ashivam.edu",
+      "parentPhone": "+91 98765 10148",
+      "attendancePercentage": 96,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_149",
+      "studentId": "S149",
+      "rollNumber": 149,
+      "fullName": "Harsh Vardhan",
+      "email": "harsh149@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "5th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 149, Green Valley",
+      "parentName": "Parent of Harsh",
+      "parentEmail": "parent149@ashivam.edu",
+      "parentPhone": "+91 98765 10149",
+      "attendancePercentage": 97,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_150",
+      "studentId": "S150",
+      "rollNumber": 150,
+      "fullName": "Jatin Arora",
+      "email": "jatin150@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "5th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 150, Green Valley",
+      "parentName": "Parent of Jatin",
+      "parentEmail": "parent150@ashivam.edu",
+      "parentPhone": "+91 98765 10150",
+      "attendancePercentage": 98,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_151",
+      "studentId": "S151",
+      "rollNumber": 151,
+      "fullName": "Lokesh Yadav",
+      "email": "lokesh151@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "5th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 151, Green Valley",
+      "parentName": "Parent of Lokesh",
+      "parentEmail": "parent151@ashivam.edu",
+      "parentPhone": "+91 98765 10151",
+      "attendancePercentage": 89,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_152",
+      "studentId": "S152",
+      "rollNumber": 152,
+      "fullName": "Mohit Sharma",
+      "email": "mohit152@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "5th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 152, Green Valley",
+      "parentName": "Parent of Mohit",
+      "parentEmail": "parent152@ashivam.edu",
+      "parentPhone": "+91 98765 10152",
+      "attendancePercentage": 90,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_153",
+      "studentId": "S153",
+      "rollNumber": 153,
+      "fullName": "Kavya Kumar",
+      "email": "kavya153@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "5th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 153, Green Valley",
+      "parentName": "Parent of Kavya",
+      "parentEmail": "parent153@ashivam.edu",
+      "parentPhone": "+91 98765 10153",
+      "attendancePercentage": 91,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_154",
+      "studentId": "S154",
+      "rollNumber": 154,
+      "fullName": "Rahul Kumar",
+      "email": "rahul154@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "5th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "B+",
+      "address": "Plot 154, Green Valley",
+      "parentName": "Parent of Rahul",
+      "parentEmail": "parent154@ashivam.edu",
+      "parentPhone": "+91 98765 10154",
+      "attendancePercentage": 92,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_155",
+      "studentId": "S155",
+      "rollNumber": 155,
+      "fullName": "Ananya Singh",
+      "email": "ananya155@ashivam.edu",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "5th",
+      "section": "B",
+      "academicYear": "2025-2026",
+      "bloodGroup": "A+",
+      "address": "Plot 155, Green Valley",
+      "parentName": "Parent of Ananya",
+      "parentEmail": "parent155@ashivam.edu",
+      "parentPhone": "+91 98765 10155",
+      "attendancePercentage": 93,
+      "feeStatus": "Paid"
+    },
+    {
+      "id": "s_1794912210218",
+      "studentId": "S156",
+      "rollNumber": 156,
+      "attendancePercentage": 95,
+      "feeStatus": "Pending",
+      "fullName": "arjun",
+      "email": "arjun@101",
+      "dob": "2026-11-17",
+      "gender": "Male",
+      "class": "1st",
+      "section": "A",
+      "parentName": "shyam",
+      "parentEmail": "",
+      "parentPhone": "789456133",
+      "address": "",
+      "bloodGroup": "O+"
+    },
+    {
+      "id": "s_1794912613800",
+      "studentId": "S157",
+      "rollNumber": 157,
+      "attendancePercentage": 95,
+      "feeStatus": "Pending",
+      "fullName": "kiran",
+      "email": "kiran@123",
+      "dob": "2026-11-17",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "A",
+      "parentName": "rajesh",
+      "parentEmail": "",
+      "parentPhone": "159635778",
+      "address": "",
+      "bloodGroup": "O+"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t1",
+      "teacherId": "T101",
+      "name": "Dr. R. K. Verma",
+      "designation": "School Principal",
+      "email": "admin@ashivam.edu",
+      "phone": "+91 98000 11111",
+      "qualification": "Ph.D. Education",
+      "experience": "20 Years",
+      "subject": "Administration"
+    },
+    {
+      "id": "t2",
+      "teacherId": "T102",
+      "name": "Mrs. Sarojini Devi",
+      "designation": "School Vice Principal",
+      "email": "sarojini@ashivam.edu",
+      "phone": "+91 98000 22222",
+      "qualification": "M.Ed., M.A.",
+      "experience": "15 Years",
+      "subject": "Administration / Supervision"
+    },
+    {
+      "id": "t3",
+      "teacherId": "T103",
+      "name": "Mr. Venkat Rao",
+      "designation": "Teacher",
+      "email": "venkat@ashivam.edu",
+      "phone": "+91 98333 44556",
+      "qualification": "M.A. Telugu, B.Ed.",
+      "experience": "10 Years",
+      "subject": "Telugu"
+    },
+    {
+      "id": "t4",
+      "teacherId": "T104",
+      "name": "Mr. Rajesh Sharma",
+      "designation": "Teacher",
+      "email": "sharma@ashivam.edu",
+      "phone": "+91 98222 33445",
+      "qualification": "M.A. English, D.El.Ed.",
+      "experience": "5 Years",
+      "subject": "English"
+    },
+    {
+      "id": "t5",
+      "teacherId": "T105",
+      "name": "Mrs. Padma Latha",
+      "designation": "Teacher",
+      "email": "padma@ashivam.edu",
+      "phone": "+91 98444 55667",
+      "qualification": "M.A. Hindi, B.Ed.",
+      "experience": "7 Years",
+      "subject": "Hindi"
+    },
+    {
+      "id": "t6",
+      "teacherId": "T106",
+      "name": "Mrs. Vannani Rao",
+      "designation": "Teacher",
+      "email": "vannani@ashivam.edu",
+      "phone": "+91 98111 22334",
+      "qualification": "M.Sc., B.Ed.",
+      "experience": "8 Years",
+      "subject": "Maths"
+    },
+    {
+      "id": "t7",
+      "teacherId": "T107",
+      "name": "Dr. Ramesh Kumar",
+      "designation": "Teacher",
+      "email": "ramesh@ashivam.edu",
+      "phone": "+91 98555 66778",
+      "qualification": "M.Sc. Physics, B.Ed.",
+      "experience": "9 Years",
+      "subject": "Science"
+    },
+    {
+      "id": "t8",
+      "teacherId": "T108",
+      "name": "Ms. Divya Reddy",
+      "designation": "Teacher",
+      "email": "divya@ashivam.edu",
+      "phone": "+91 98666 77889",
+      "qualification": "M.A. History, B.Ed.",
+      "experience": "6 Years",
+      "subject": "Social"
+    },
+    {
+      "id": "t_1794912723982",
+      "teacherId": "T109",
+      "name": "mrs.umadevi",
+      "designation": "Teacher",
+      "email": "umadevi@123",
+      "phone": "7894561111",
+      "qualification": "",
+      "experience": "",
+      "subject": "Arts & Crafts"
+    }
+  ],
+  "parents": [
+    {
+      "id": "p1",
+      "parentId": "P101",
+      "name": "Mr. Anil Kumar",
+      "email": "kumar@ashivam.edu",
+      "phone": "+91 98765 43210",
+      "address": "Plot 42, Green Valley",
+      "childrenNames": [
+        "Kavya Kumar (5th-A)",
+        "Rahul Kumar (3rd-A)"
+      ]
+    },
+    {
+      "id": "p2",
+      "parentId": "P102",
+      "name": "Mrs. Sunita Singh",
+      "email": "singh@ashivam.edu",
+      "phone": "+91 91234 56789",
+      "address": "18 Royal Palms",
+      "childrenNames": [
+        "Ananya Singh (4th-A)"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "id": "c1",
+      "grade": "1st",
+      "section": "A",
+      "room": "Room 101"
+    },
+    {
+      "id": "c2",
+      "grade": "1st",
+      "section": "B",
+      "room": "Room 102"
+    },
+    {
+      "id": "c3",
+      "grade": "2nd",
+      "section": "A",
+      "room": "Room 103"
+    },
+    {
+      "id": "c4",
+      "grade": "2nd",
+      "section": "B",
+      "room": "Room 104"
+    },
+    {
+      "id": "c5",
+      "grade": "3rd",
+      "section": "A",
+      "room": "Room 105"
+    },
+    {
+      "id": "c6",
+      "grade": "3rd",
+      "section": "B",
+      "room": "Room 106"
+    },
+    {
+      "id": "c7",
+      "grade": "4th",
+      "section": "A",
+      "room": "Room 107"
+    },
+    {
+      "id": "c8",
+      "grade": "4th",
+      "section": "B",
+      "room": "Room 108"
+    },
+    {
+      "id": "c9",
+      "grade": "5th",
+      "section": "A",
+      "room": "Room 109"
+    },
+    {
+      "id": "c10",
+      "grade": "5th",
+      "section": "B",
+      "room": "Room 110"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "att_1",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "A",
+      "studentId": "s_101",
+      "studentName": "Aarav Patel",
+      "status": "Absent"
+    },
+    {
+      "id": "att_2",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "A",
+      "studentId": "s_102",
+      "studentName": "Diya Sharma",
+      "status": "Present"
+    },
+    {
+      "id": "att_3",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "A",
+      "studentId": "s_103",
+      "studentName": "Rohan Verma",
+      "status": "Present"
+    },
+    {
+      "id": "att_4",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "A",
+      "studentId": "s_104",
+      "studentName": "Sneha Reddy",
+      "status": "Present"
+    },
+    {
+      "id": "att_5",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "A",
+      "studentId": "s_105",
+      "studentName": "Kiran Kumar",
+      "status": "Present"
+    },
+    {
+      "id": "att_6",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "A",
+      "studentId": "s_106",
+      "studentName": "Priya Nair",
+      "status": "Present"
+    },
+    {
+      "id": "att_7",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "B",
+      "studentId": "s_107",
+      "studentName": "Vikram Joshi",
+      "status": "Present"
+    },
+    {
+      "id": "att_8",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "B",
+      "studentId": "s_108",
+      "studentName": "Vivaan Rao",
+      "status": "Absent"
+    },
+    {
+      "id": "att_9",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "B",
+      "studentId": "s_109",
+      "studentName": "Aditya Menon",
+      "status": "Present"
+    },
+    {
+      "id": "att_10",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "B",
+      "studentId": "s_110",
+      "studentName": "Vihaan Gupta",
+      "status": "Present"
+    },
+    {
+      "id": "att_11",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "B",
+      "studentId": "s_111",
+      "studentName": "Arjun Reddy",
+      "status": "Present"
+    },
+    {
+      "id": "att_12",
+      "date": "2026-11-16",
+      "class": "1st",
+      "section": "B",
+      "studentId": "s_112",
+      "studentName": "Sai Teja",
+      "status": "Present"
+    },
+    {
+      "id": "att_13",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "A",
+      "studentId": "s4",
+      "studentName": "Sai Teja",
+      "status": "Present"
+    },
+    {
+      "id": "att_14",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "A",
+      "studentId": "s_114",
+      "studentName": "Ayaan Khan",
+      "status": "Present"
+    },
+    {
+      "id": "att_15",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "A",
+      "studentId": "s_115",
+      "studentName": "Krishna Murthy",
+      "status": "Absent"
+    },
+    {
+      "id": "att_16",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "A",
+      "studentId": "s_116",
+      "studentName": "Ishaan Iyer",
+      "status": "Present"
+    },
+    {
+      "id": "att_17",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "A",
+      "studentId": "s_117",
+      "studentName": "Sanya Kapoor",
+      "status": "Present"
+    },
+    {
+      "id": "att_18",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "A",
+      "studentId": "s_118",
+      "studentName": "Riya Deshmukh",
+      "status": "Present"
+    },
+    {
+      "id": "att_19",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "B",
+      "studentId": "s_119",
+      "studentName": "Aadhya Kulkarni",
+      "status": "Present"
+    },
+    {
+      "id": "att_20",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "B",
+      "studentId": "s_120",
+      "studentName": "Shanaya Bose",
+      "status": "Present"
+    },
+    {
+      "id": "att_21",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "B",
+      "studentId": "s_121",
+      "studentName": "Meera Pillai",
+      "status": "Present"
+    },
+    {
+      "id": "att_22",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "B",
+      "studentId": "s_122",
+      "studentName": "Navya Hegde",
+      "status": "Absent"
+    },
+    {
+      "id": "att_23",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "B",
+      "studentId": "s_123",
+      "studentName": "Pooja Bhat",
+      "status": "Present"
+    },
+    {
+      "id": "att_24",
+      "date": "2026-11-16",
+      "class": "2nd",
+      "section": "B",
+      "studentId": "s_124",
+      "studentName": "Neha Agarwal",
+      "status": "Present"
+    },
+    {
+      "id": "att_25",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s2",
+      "studentName": "Rahul Kumar",
+      "status": "Present"
+    },
+    {
+      "id": "att_26",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_126",
+      "studentName": "Varun Shetty",
+      "status": "Present"
+    },
+    {
+      "id": "att_27",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_127",
+      "studentName": "Karthik Rao",
+      "status": "Present"
+    },
+    {
+      "id": "att_28",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_128",
+      "studentName": "Amit Tiwari",
+      "status": "Present"
+    },
+    {
+      "id": "att_29",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_129",
+      "studentName": "Sumit Mishra",
+      "status": "Absent"
+    },
+    {
+      "id": "att_30",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_130",
+      "studentName": "Deepak Dubey",
+      "status": "Present"
+    },
+    {
+      "id": "att_31",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "B",
+      "studentId": "s_131",
+      "studentName": "Manish Saxena",
+      "status": "Present"
+    },
+    {
+      "id": "att_32",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "B",
+      "studentId": "s_132",
+      "studentName": "Suresh Babu",
+      "status": "Present"
+    },
+    {
+      "id": "att_33",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "B",
+      "studentId": "s_133",
+      "studentName": "Ramesh Naidu",
+      "status": "Present"
+    },
+    {
+      "id": "att_34",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "B",
+      "studentId": "s_134",
+      "studentName": "Sunita Devi",
+      "status": "Present"
+    },
+    {
+      "id": "att_35",
+      "date": "2026-11-16",
+      "class": "3rd",
+      "section": "B",
+      "studentId": "s_135",
+      "studentName": "Geeta Rani",
+      "status": "Present"
+    },
+    {
+      "id": "att_36",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "A",
+      "studentId": "s3",
+      "studentName": "Ananya Singh",
+      "status": "Absent"
+    },
+    {
+      "id": "att_37",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "A",
+      "studentId": "s_137",
+      "studentName": "Kavitha Gowda",
+      "status": "Present"
+    },
+    {
+      "id": "att_38",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "A",
+      "studentId": "s_138",
+      "studentName": "Siddharth Roy",
+      "status": "Present"
+    },
+    {
+      "id": "att_39",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "A",
+      "studentId": "s_139",
+      "studentName": "Nikhil Das",
+      "status": "Present"
+    },
+    {
+      "id": "att_40",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "A",
+      "studentId": "s_140",
+      "studentName": "Abhishek Sen",
+      "status": "Present"
+    },
+    {
+      "id": "att_41",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "B",
+      "studentId": "s_141",
+      "studentName": "Akash Choudhary",
+      "status": "Present"
+    },
+    {
+      "id": "att_42",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "B",
+      "studentId": "s_142",
+      "studentName": "Alok Bansal",
+      "status": "Present"
+    },
+    {
+      "id": "att_43",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "B",
+      "studentId": "s_143",
+      "studentName": "Aniket Chauhan",
+      "status": "Absent"
+    },
+    {
+      "id": "att_44",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "B",
+      "studentId": "s_144",
+      "studentName": "Bhavana Prasad",
+      "status": "Present"
+    },
+    {
+      "id": "att_45",
+      "date": "2026-11-16",
+      "class": "4th",
+      "section": "B",
+      "studentId": "s_145",
+      "studentName": "Charan Teja",
+      "status": "Present"
+    },
+    {
+      "id": "att_46",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "A",
+      "studentId": "s1",
+      "studentName": "Kavya Kumar",
+      "status": "Present"
+    },
+    {
+      "id": "att_47",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "A",
+      "studentId": "s_147",
+      "studentName": "Eshwar Rao",
+      "status": "Present"
+    },
+    {
+      "id": "att_48",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "A",
+      "studentId": "s_148",
+      "studentName": "Ganesh Naik",
+      "status": "Present"
+    },
+    {
+      "id": "att_49",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "A",
+      "studentId": "s_149",
+      "studentName": "Harsh Vardhan",
+      "status": "Present"
+    },
+    {
+      "id": "att_50",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "A",
+      "studentId": "s_150",
+      "studentName": "Jatin Arora",
+      "status": "Absent"
+    },
+    {
+      "id": "att_51",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "B",
+      "studentId": "s_151",
+      "studentName": "Lokesh Yadav",
+      "status": "Present"
+    },
+    {
+      "id": "att_52",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "B",
+      "studentId": "s_152",
+      "studentName": "Mohit Sharma",
+      "status": "Present"
+    },
+    {
+      "id": "att_53",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "B",
+      "studentId": "s_153",
+      "studentName": "Kavya Kumar",
+      "status": "Present"
+    },
+    {
+      "id": "att_54",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "B",
+      "studentId": "s_154",
+      "studentName": "Rahul Kumar",
+      "status": "Present"
+    },
+    {
+      "id": "att_55",
+      "date": "2026-11-16",
+      "class": "5th",
+      "section": "B",
+      "studentId": "s_155",
+      "studentName": "Ananya Singh",
+      "status": "Present"
+    },
+    {
+      "id": "att_s_1794912613800",
+      "date": "2026-11-17",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_1794912613800",
+      "studentName": "kiran",
+      "status": "Present"
+    }
+  ],
+  "fees": [
+    {
+      "id": "f_s_101",
+      "studentId": "s_101",
+      "studentName": "Aarav Patel",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_102",
+      "studentId": "s_102",
+      "studentName": "Diya Sharma",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_103",
+      "studentId": "s_103",
+      "studentName": "Rohan Verma",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_104",
+      "studentId": "s_104",
+      "studentName": "Sneha Reddy",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_105",
+      "studentId": "s_105",
+      "studentName": "Kiran Kumar",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_106",
+      "studentId": "s_106",
+      "studentName": "Priya Nair",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_107",
+      "studentId": "s_107",
+      "studentName": "Vikram Joshi",
+      "class": "1st-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_108",
+      "studentId": "s_108",
+      "studentName": "Vivaan Rao",
+      "class": "1st-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_109",
+      "studentId": "s_109",
+      "studentName": "Aditya Menon",
+      "class": "1st-B",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_110",
+      "studentId": "s_110",
+      "studentName": "Vihaan Gupta",
+      "class": "1st-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_111",
+      "studentId": "s_111",
+      "studentName": "Arjun Reddy",
+      "class": "1st-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_112",
+      "studentId": "s_112",
+      "studentName": "Sai Teja",
+      "class": "1st-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s4",
+      "studentId": "s4",
+      "studentName": "Sai Teja",
+      "class": "2nd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_114",
+      "studentId": "s_114",
+      "studentName": "Ayaan Khan",
+      "class": "2nd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_115",
+      "studentId": "s_115",
+      "studentName": "Krishna Murthy",
+      "class": "2nd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_116",
+      "studentId": "s_116",
+      "studentName": "Ishaan Iyer",
+      "class": "2nd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_117",
+      "studentId": "s_117",
+      "studentName": "Sanya Kapoor",
+      "class": "2nd-A",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_118",
+      "studentId": "s_118",
+      "studentName": "Riya Deshmukh",
+      "class": "2nd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_119",
+      "studentId": "s_119",
+      "studentName": "Aadhya Kulkarni",
+      "class": "2nd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_120",
+      "studentId": "s_120",
+      "studentName": "Shanaya Bose",
+      "class": "2nd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_121",
+      "studentId": "s_121",
+      "studentName": "Meera Pillai",
+      "class": "2nd-B",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_122",
+      "studentId": "s_122",
+      "studentName": "Navya Hegde",
+      "class": "2nd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_123",
+      "studentId": "s_123",
+      "studentName": "Pooja Bhat",
+      "class": "2nd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_124",
+      "studentId": "s_124",
+      "studentName": "Neha Agarwal",
+      "class": "2nd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s2",
+      "studentId": "s2",
+      "studentName": "Rahul Kumar",
+      "class": "3rd-A",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_126",
+      "studentId": "s_126",
+      "studentName": "Varun Shetty",
+      "class": "3rd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_127",
+      "studentId": "s_127",
+      "studentName": "Karthik Rao",
+      "class": "3rd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_128",
+      "studentId": "s_128",
+      "studentName": "Amit Tiwari",
+      "class": "3rd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_129",
+      "studentId": "s_129",
+      "studentName": "Sumit Mishra",
+      "class": "3rd-A",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_130",
+      "studentId": "s_130",
+      "studentName": "Deepak Dubey",
+      "class": "3rd-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_131",
+      "studentId": "s_131",
+      "studentName": "Manish Saxena",
+      "class": "3rd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_132",
+      "studentId": "s_132",
+      "studentName": "Suresh Babu",
+      "class": "3rd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_133",
+      "studentId": "s_133",
+      "studentName": "Ramesh Naidu",
+      "class": "3rd-B",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_134",
+      "studentId": "s_134",
+      "studentName": "Sunita Devi",
+      "class": "3rd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_135",
+      "studentId": "s_135",
+      "studentName": "Geeta Rani",
+      "class": "3rd-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s3",
+      "studentId": "s3",
+      "studentName": "Ananya Singh",
+      "class": "4th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_137",
+      "studentId": "s_137",
+      "studentName": "Kavitha Gowda",
+      "class": "4th-A",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_138",
+      "studentId": "s_138",
+      "studentName": "Siddharth Roy",
+      "class": "4th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_139",
+      "studentId": "s_139",
+      "studentName": "Nikhil Das",
+      "class": "4th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_140",
+      "studentId": "s_140",
+      "studentName": "Abhishek Sen",
+      "class": "4th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_141",
+      "studentId": "s_141",
+      "studentName": "Akash Choudhary",
+      "class": "4th-B",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_142",
+      "studentId": "s_142",
+      "studentName": "Alok Bansal",
+      "class": "4th-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_143",
+      "studentId": "s_143",
+      "studentName": "Aniket Chauhan",
+      "class": "4th-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_144",
+      "studentId": "s_144",
+      "studentName": "Bhavana Prasad",
+      "class": "4th-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_145",
+      "studentId": "s_145",
+      "studentName": "Charan Teja",
+      "class": "4th-B",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s1",
+      "studentId": "s1",
+      "studentName": "Kavya Kumar",
+      "class": "5th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_147",
+      "studentId": "s_147",
+      "studentName": "Eshwar Rao",
+      "class": "5th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_148",
+      "studentId": "s_148",
+      "studentName": "Ganesh Naik",
+      "class": "5th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_149",
+      "studentId": "s_149",
+      "studentName": "Harsh Vardhan",
+      "class": "5th-A",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_150",
+      "studentId": "s_150",
+      "studentName": "Jatin Arora",
+      "class": "5th-A",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_151",
+      "studentId": "s_151",
+      "studentName": "Lokesh Yadav",
+      "class": "5th-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_152",
+      "studentId": "s_152",
+      "studentName": "Mohit Sharma",
+      "class": "5th-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_153",
+      "studentId": "s_153",
+      "studentName": "Kavya Kumar",
+      "class": "5th-B",
+      "totalAmount": 22000,
+      "paidAmount": 10000,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_154",
+      "studentId": "s_154",
+      "studentName": "Rahul Kumar",
+      "class": "5th-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_155",
+      "studentId": "s_155",
+      "studentName": "Ananya Singh",
+      "class": "5th-B",
+      "totalAmount": 22000,
+      "paidAmount": 22000,
+      "status": "Paid"
+    },
+    {
+      "id": "f_s_1794912210218",
+      "studentId": "s_1794912210218",
+      "studentName": "arjun",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 0,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_1794912613800",
+      "studentId": "s_1794912613800",
+      "studentName": "kiran",
+      "class": "3rd-A",
+      "totalAmount": 22000,
+      "paidAmount": 0,
+      "status": "Pending"
+    }
+  ],
+  "examinations": [
+    {
+      "id": "ex1",
+      "examName": "First Term Assessment 2026",
+      "class": "5th",
+      "subject": "Mathematics",
+      "maxMarks": 100,
+      "passingMarks": 35
+    }
+  ],
+  "results": [
+    {
+      "id": "res_0",
+      "studentId": "s_101",
+      "studentName": "Aarav Patel",
+      "class": "1st-A",
+      "subject": "Telugu",
+      "marksObtained": 82,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_1",
+      "studentId": "s_102",
+      "studentName": "Diya Sharma",
+      "class": "1st-A",
+      "subject": "Mathematics",
+      "marksObtained": 83,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_2",
+      "studentId": "s_103",
+      "studentName": "Rohan Verma",
+      "class": "1st-A",
+      "subject": "Telugu",
+      "marksObtained": 84,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_3",
+      "studentId": "s_104",
+      "studentName": "Sneha Reddy",
+      "class": "1st-A",
+      "subject": "Mathematics",
+      "marksObtained": 85,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_4",
+      "studentId": "s_105",
+      "studentName": "Kiran Kumar",
+      "class": "1st-A",
+      "subject": "Telugu",
+      "marksObtained": 86,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_5",
+      "studentId": "s_106",
+      "studentName": "Priya Nair",
+      "class": "1st-A",
+      "subject": "Mathematics",
+      "marksObtained": 87,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_6",
+      "studentId": "s_107",
+      "studentName": "Vikram Joshi",
+      "class": "1st-B",
+      "subject": "Telugu",
+      "marksObtained": 88,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_7",
+      "studentId": "s_108",
+      "studentName": "Vivaan Rao",
+      "class": "1st-B",
+      "subject": "Mathematics",
+      "marksObtained": 89,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_8",
+      "studentId": "s_109",
+      "studentName": "Aditya Menon",
+      "class": "1st-B",
+      "subject": "Telugu",
+      "marksObtained": 90,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_9",
+      "studentId": "s_110",
+      "studentName": "Vihaan Gupta",
+      "class": "1st-B",
+      "subject": "Mathematics",
+      "marksObtained": 91,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_10",
+      "studentId": "s_111",
+      "studentName": "Arjun Reddy",
+      "class": "1st-B",
+      "subject": "Telugu",
+      "marksObtained": 92,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_11",
+      "studentId": "s_112",
+      "studentName": "Sai Teja",
+      "class": "1st-B",
+      "subject": "Mathematics",
+      "marksObtained": 93,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_12",
+      "studentId": "s4",
+      "studentName": "Sai Teja",
+      "class": "2nd-A",
+      "subject": "Telugu",
+      "marksObtained": 94,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_13",
+      "studentId": "s_114",
+      "studentName": "Ayaan Khan",
+      "class": "2nd-A",
+      "subject": "Mathematics",
+      "marksObtained": 95,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_14",
+      "studentId": "s_115",
+      "studentName": "Krishna Murthy",
+      "class": "2nd-A",
+      "subject": "Telugu",
+      "marksObtained": 96,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_15",
+      "studentId": "s_116",
+      "studentName": "Ishaan Iyer",
+      "class": "2nd-A",
+      "subject": "Mathematics",
+      "marksObtained": 97,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_16",
+      "studentId": "s_117",
+      "studentName": "Sanya Kapoor",
+      "class": "2nd-A",
+      "subject": "Telugu",
+      "marksObtained": 82,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_17",
+      "studentId": "s_118",
+      "studentName": "Riya Deshmukh",
+      "class": "2nd-A",
+      "subject": "Mathematics",
+      "marksObtained": 83,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_18",
+      "studentId": "s_119",
+      "studentName": "Aadhya Kulkarni",
+      "class": "2nd-B",
+      "subject": "Telugu",
+      "marksObtained": 84,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_19",
+      "studentId": "s_120",
+      "studentName": "Shanaya Bose",
+      "class": "2nd-B",
+      "subject": "Mathematics",
+      "marksObtained": 85,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_20",
+      "studentId": "s_121",
+      "studentName": "Meera Pillai",
+      "class": "2nd-B",
+      "subject": "Telugu",
+      "marksObtained": 86,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_21",
+      "studentId": "s_122",
+      "studentName": "Navya Hegde",
+      "class": "2nd-B",
+      "subject": "Mathematics",
+      "marksObtained": 87,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_22",
+      "studentId": "s_123",
+      "studentName": "Pooja Bhat",
+      "class": "2nd-B",
+      "subject": "Telugu",
+      "marksObtained": 88,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_23",
+      "studentId": "s_124",
+      "studentName": "Neha Agarwal",
+      "class": "2nd-B",
+      "subject": "Mathematics",
+      "marksObtained": 89,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_24",
+      "studentId": "s2",
+      "studentName": "Rahul Kumar",
+      "class": "3rd-A",
+      "subject": "Telugu",
+      "marksObtained": 90,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_25",
+      "studentId": "s_126",
+      "studentName": "Varun Shetty",
+      "class": "3rd-A",
+      "subject": "Mathematics",
+      "marksObtained": 91,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_26",
+      "studentId": "s_127",
+      "studentName": "Karthik Rao",
+      "class": "3rd-A",
+      "subject": "Telugu",
+      "marksObtained": 92,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_27",
+      "studentId": "s_128",
+      "studentName": "Amit Tiwari",
+      "class": "3rd-A",
+      "subject": "Mathematics",
+      "marksObtained": 93,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_28",
+      "studentId": "s_129",
+      "studentName": "Sumit Mishra",
+      "class": "3rd-A",
+      "subject": "Telugu",
+      "marksObtained": 94,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_29",
+      "studentId": "s_130",
+      "studentName": "Deepak Dubey",
+      "class": "3rd-A",
+      "subject": "Mathematics",
+      "marksObtained": 95,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_30",
+      "studentId": "s_131",
+      "studentName": "Manish Saxena",
+      "class": "3rd-B",
+      "subject": "Telugu",
+      "marksObtained": 96,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_31",
+      "studentId": "s_132",
+      "studentName": "Suresh Babu",
+      "class": "3rd-B",
+      "subject": "Mathematics",
+      "marksObtained": 97,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_32",
+      "studentId": "s_133",
+      "studentName": "Ramesh Naidu",
+      "class": "3rd-B",
+      "subject": "Telugu",
+      "marksObtained": 82,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_33",
+      "studentId": "s_134",
+      "studentName": "Sunita Devi",
+      "class": "3rd-B",
+      "subject": "Mathematics",
+      "marksObtained": 83,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_34",
+      "studentId": "s_135",
+      "studentName": "Geeta Rani",
+      "class": "3rd-B",
+      "subject": "Telugu",
+      "marksObtained": 84,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_35",
+      "studentId": "s3",
+      "studentName": "Ananya Singh",
+      "class": "4th-A",
+      "subject": "Mathematics",
+      "marksObtained": 85,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_36",
+      "studentId": "s_137",
+      "studentName": "Kavitha Gowda",
+      "class": "4th-A",
+      "subject": "Telugu",
+      "marksObtained": 86,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_37",
+      "studentId": "s_138",
+      "studentName": "Siddharth Roy",
+      "class": "4th-A",
+      "subject": "Mathematics",
+      "marksObtained": 87,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_38",
+      "studentId": "s_139",
+      "studentName": "Nikhil Das",
+      "class": "4th-A",
+      "subject": "Telugu",
+      "marksObtained": 88,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_39",
+      "studentId": "s_140",
+      "studentName": "Abhishek Sen",
+      "class": "4th-A",
+      "subject": "Mathematics",
+      "marksObtained": 89,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_40",
+      "studentId": "s_141",
+      "studentName": "Akash Choudhary",
+      "class": "4th-B",
+      "subject": "Telugu",
+      "marksObtained": 90,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_41",
+      "studentId": "s_142",
+      "studentName": "Alok Bansal",
+      "class": "4th-B",
+      "subject": "Mathematics",
+      "marksObtained": 91,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_42",
+      "studentId": "s_143",
+      "studentName": "Aniket Chauhan",
+      "class": "4th-B",
+      "subject": "Telugu",
+      "marksObtained": 92,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_43",
+      "studentId": "s_144",
+      "studentName": "Bhavana Prasad",
+      "class": "4th-B",
+      "subject": "Mathematics",
+      "marksObtained": 93,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_44",
+      "studentId": "s_145",
+      "studentName": "Charan Teja",
+      "class": "4th-B",
+      "subject": "Telugu",
+      "marksObtained": 94,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_45",
+      "studentId": "s1",
+      "studentName": "Kavya Kumar",
+      "class": "5th-A",
+      "subject": "Mathematics",
+      "marksObtained": 95,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_46",
+      "studentId": "s_147",
+      "studentName": "Eshwar Rao",
+      "class": "5th-A",
+      "subject": "Telugu",
+      "marksObtained": 96,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_47",
+      "studentId": "s_148",
+      "studentName": "Ganesh Naik",
+      "class": "5th-A",
+      "subject": "Mathematics",
+      "marksObtained": 97,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_48",
+      "studentId": "s_149",
+      "studentName": "Harsh Vardhan",
+      "class": "5th-A",
+      "subject": "Telugu",
+      "marksObtained": 82,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_49",
+      "studentId": "s_150",
+      "studentName": "Jatin Arora",
+      "class": "5th-A",
+      "subject": "Mathematics",
+      "marksObtained": 83,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_50",
+      "studentId": "s_151",
+      "studentName": "Lokesh Yadav",
+      "class": "5th-B",
+      "subject": "Telugu",
+      "marksObtained": 84,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_51",
+      "studentId": "s_152",
+      "studentName": "Mohit Sharma",
+      "class": "5th-B",
+      "subject": "Mathematics",
+      "marksObtained": 85,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_52",
+      "studentId": "s_153",
+      "studentName": "Kavya Kumar",
+      "class": "5th-B",
+      "subject": "Telugu",
+      "marksObtained": 86,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_53",
+      "studentId": "s_154",
+      "studentName": "Rahul Kumar",
+      "class": "5th-B",
+      "subject": "Mathematics",
+      "marksObtained": 87,
+      "maxMarks": 100,
+      "grade": "A",
+      "remarks": "Very good progress"
+    },
+    {
+      "id": "res_54",
+      "studentId": "s_155",
+      "studentName": "Ananya Singh",
+      "class": "5th-B",
+      "subject": "Telugu",
+      "marksObtained": 88,
+      "maxMarks": 100,
+      "grade": "A+",
+      "remarks": "Very good progress"
+    }
+  ],
+  "notices": [
+    {
+      "id": "n1",
+      "title": "Annual Sports Day 2026",
+      "description": "Annual sports meet on Dec 20, 2026.",
+      "category": "All",
+      "date": "2026-11-15"
+    },
+    {
+      "id": "n2",
+      "title": "Parent-Teacher Meeting",
+      "description": "PTM scheduled for Saturday.",
+      "category": "Parents",
+      "date": "2026-11-14"
+    }
+  ],
+  "feedback": [],
+  "timetables": [
+    {
+      "id": "tt1",
+      "class": "1st-A",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Hindi",
+            "01:15 PM • EVS"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Hindi",
+            "11:40 AM • EVS",
+            "01:15 PM • Computer Lab"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Hindi",
+            "10:50 AM • EVS",
+            "11:40 AM • Telugu",
+            "01:15 PM • English"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • Hindi",
+            "09:50 AM • EVS",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Library"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • EVS",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Hindi"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • Maths",
+            "10:50 AM • Activity",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt2",
+      "class": "1st-B",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Hindi",
+            "11:40 AM • EVS",
+            "01:15 PM • Telugu"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Hindi",
+            "10:50 AM • EVS",
+            "11:40 AM • Telugu",
+            "01:15 PM • Sports"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • Hindi",
+            "09:50 AM • EVS",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Maths"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • EVS",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Art & Craft"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Hindi",
+            "01:15 PM • EVS"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Hindi",
+            "10:50 AM • Hindi",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt3",
+      "class": "2nd-A",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Hindi",
+            "10:50 AM • EVS",
+            "11:40 AM • Telugu",
+            "01:15 PM • English"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • Hindi",
+            "09:50 AM • EVS",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Library"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • EVS",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Hindi"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Hindi",
+            "01:15 PM • Activity"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Hindi",
+            "11:40 AM • EVS",
+            "01:15 PM • Telugu"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • EVS",
+            "10:50 AM • Computer Lab",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt4",
+      "class": "2nd-B",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Hindi",
+            "09:50 AM • EVS",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Maths"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • EVS",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Art & Craft"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Hindi",
+            "01:15 PM • EVS"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Hindi",
+            "11:40 AM • EVS",
+            "01:15 PM • Hindi"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Hindi",
+            "10:50 AM • EVS",
+            "11:40 AM • Telugu",
+            "01:15 PM • English"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Hindi",
+            "09:50 AM • Telugu",
+            "10:50 AM • Sports",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt5",
+      "class": "3rd-A",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Science"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Science",
+            "01:15 PM • Activity"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Science",
+            "11:40 AM • Social",
+            "01:15 PM • Telugu"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Science",
+            "10:50 AM • Social",
+            "11:40 AM • Telugu",
+            "01:15 PM • Computer Lab"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • Science",
+            "09:50 AM • Social",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Maths"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • English",
+            "10:50 AM • Library",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt6",
+      "class": "3rd-B",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Science",
+            "01:15 PM • Social"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Science",
+            "11:40 AM • Social",
+            "01:15 PM • Hindi"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Science",
+            "10:50 AM • Social",
+            "11:40 AM • Telugu",
+            "01:15 PM • English"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • Science",
+            "09:50 AM • Social",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Sports"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Science"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • Maths",
+            "10:50 AM • Art & Craft",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt7",
+      "class": "4th-A",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Science",
+            "11:40 AM • Social",
+            "01:15 PM • Telugu"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Science",
+            "10:50 AM • Social",
+            "11:40 AM • Telugu",
+            "01:15 PM • Computer Lab"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • Science",
+            "09:50 AM • Social",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Maths"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Library"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Science",
+            "01:15 PM • Social"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Science",
+            "10:50 AM • Activity",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt8",
+      "class": "4th-B",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Science",
+            "10:50 AM • Social",
+            "11:40 AM • Telugu",
+            "01:15 PM • English"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • Science",
+            "09:50 AM • Social",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Sports"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Science"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Science",
+            "01:15 PM • Art & Craft"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Science",
+            "11:40 AM • Social",
+            "01:15 PM • Telugu"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Social",
+            "10:50 AM • Hindi",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt9",
+      "class": "5th-A",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Science",
+            "09:50 AM • Social",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Maths"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Library"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Science",
+            "01:15 PM • Social"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Science",
+            "11:40 AM • Social",
+            "01:15 PM • Activity"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Science",
+            "10:50 AM • Social",
+            "11:40 AM • Telugu",
+            "01:15 PM • English"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Science",
+            "09:50 AM • Telugu",
+            "10:50 AM • Computer Lab",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt10",
+      "class": "5th-B",
+      "schedule": [
+        {
+          "day": "Monday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • Telugu",
+            "10:50 AM • English",
+            "11:40 AM • Maths",
+            "01:15 PM • Science"
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "periods": [
+            "09:00 AM • Telugu",
+            "09:50 AM • English",
+            "10:50 AM • Maths",
+            "11:40 AM • Science",
+            "01:15 PM • Art & Craft"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "periods": [
+            "09:00 AM • English",
+            "09:50 AM • Maths",
+            "10:50 AM • Science",
+            "11:40 AM • Social",
+            "01:15 PM • Telugu"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "periods": [
+            "09:00 AM • Maths",
+            "09:50 AM • Science",
+            "10:50 AM • Social",
+            "11:40 AM • Telugu",
+            "01:15 PM • Hindi"
+          ]
+        },
+        {
+          "day": "Friday",
+          "periods": [
+            "09:00 AM • Science",
+            "09:50 AM • Social",
+            "10:50 AM • Telugu",
+            "11:40 AM • English",
+            "01:15 PM • Maths"
+          ]
+        },
+        {
+          "day": "Saturday",
+          "periods": [
+            "09:00 AM • Social",
+            "09:50 AM • English",
+            "10:50 AM • Sports",
+            "11:40 AM • Sports / Games"
+          ]
+        }
+      ]
+    }
+  ]
+}

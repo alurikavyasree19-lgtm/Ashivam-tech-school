@@ -1,0 +1,6 @@
+{
+  "name": "ASHIVAM TECH – Primary School Management ERP",
+  "description": "A comprehensive primary school management ERP with role-based access for Admin, Teacher, Student, and Parent, student/teacher management, attendance, fees, exams, notices, and reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
