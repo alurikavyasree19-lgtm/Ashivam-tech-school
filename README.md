@@ -28,9 +28,10 @@ A full-stack Primary School Management ERP web application built with **React 19
 ### Admin Portal
 - **Dashboard Overview**: Live counts for 55+ students across 10 sections (`1st-A` to `5th-B`), faculty directory, fee collection metrics, and pending parent inquiries.
 - **Student & Teacher Management**: Add, edit, and delete students or teachers (`+ Add Student` / `+ Add Teacher`). Newly added students and teachers automatically receive login accounts.
-- **Assigned Classes Control**: Assign specific class sections (e.g., `3rd-A`, `4th-A`, `5th-A`) to each teacher.
+- **Assigned Classes Control**: Assign specific class sections (e.g., `3rd-A`, `4th-A`, `5th-A`) to each teacher and edit profiles or class schedules inline.
 - **Full Weekly Timetable**: Interactive **Monday – Saturday** class schedule editor across all 10 class sections.
 - **Fees, Attendance, Exams, Notices & Inquiries**: Mark fee statuses, publish exam results, post school announcements, and track admission inquiries.
+- **SQLite Database & SQL Learning Lab**: Built-in Admin tab to inspect all 11 relational SQLite tables, foreign key constraints (`ON DELETE CASCADE`), and run read-only `SELECT` / `JOIN` / `GROUP BY` queries against live school records.
 
 ### Teacher Portal
 - **Scoped Class View**: Displays only the classes assigned to the logged-in teacher (for example, `3rd-A`, `4th-A`, `5th-A` for Mrs. Vannani Rao).
@@ -49,8 +50,9 @@ A full-stack Primary School Management ERP web application built with **React 19
 
 ## Tech Stack
 
-- **Frontend**: React 19, TypeScript, Vite 8, Tailwind CSS v4, Lucide React, Motion
-- **Backend**: Express 4, JSON Web Tokens (`jsonwebtoken`), `bcryptjs`, JSON file persistence (`data/db.json`)
+- **Frontend**: React 19, TypeScript, Vite 8, Tailwind CSS v4, Lucide React, `Plus Jakarta Sans` + `DM Sans` + `JetBrains Mono`
+- **Backend**: Express 4, JSON Web Tokens (`jsonwebtoken`), `bcryptjs`
+- **Database**: **SQLite 3** via Node.js built-in `node:sqlite` (`DatabaseSync`, normalized schema with foreign keys, indexes, transactions, and automatic one-time migration from `data/db.json`)
 - **Deployment**: Node.js (`server.ts` via `tsx` / Node native TS) & Vercel Serverless (`/api/index.ts` + `vercel.json`)
 
 ---
@@ -61,14 +63,22 @@ A full-stack Primary School Management ERP web application built with **React 19
 ├── api/
 │   └── index.ts          # Vercel Serverless Function wrapper for Express API
 ├── data/
-│   └── db.json           # Local JSON database (auto-seeded on first run)
+│   ├── ashivam.db        # Local SQLite 3 database (auto-created & migrated)
+│   └── db.json           # Seed / legacy JSON snapshot
 ├── public/               # Static public assets
 ├── src/
-│   ├── assets/           # Bundled UI images & illustrations
-│   ├── App.tsx           # Frontend portals (Landing, Admin, Teacher, Student, Parent)
+│   ├── assets/           # Bundled campus & facility images
+│   ├── components/
+│   │   ├── AuthViews.tsx        # Role selector & login form
+│   │   ├── DashboardModals.tsx  # Student, Teacher, Result, Notice, Timetable & Report modals
+│   │   ├── DatabaseLab.tsx      # Admin SQLite Schema Explorer & SQL Practice Sandbox
+│   │   └── LandingPage.tsx      # School landing page & admissions inquiry form
+│   ├── types.ts          # Shared TypeScript interfaces
+│   ├── App.tsx           # Dashboard shell, toast notifications, and role-scoped portals
 │   ├── main.tsx          # React root entry point
-│   └── index.css         # Tailwind CSS v4 entry
+│   └── index.css         # Tailwind CSS v4 typography & theme tokens
 ├── .env.example          # Environment variable template
+├── database.ts           # SQLite schema, foreign keys, transactions & row mappers
 ├── package.json          # Scripts & dependencies
 ├── server.ts             # Express REST API + Vite/static server
 ├── tsconfig.json         # TypeScript configuration
@@ -148,8 +158,10 @@ Other helpful scripts:
 | `DELETE` | `/api/students/:id` | Admin | Delete student & linked user/fees/results |
 | `GET` | `/api/teachers` | Bearer | List teachers |
 | `POST` | `/api/teachers` | Admin | Add teacher + auto-create login |
-| `PATCH` | `/api/teachers/:id` | Admin | Update teacher & assigned classes |
+| `PATCH` | `/api/teachers/:id` | Admin | Update teacher profile & assigned classes |
 | `DELETE` | `/api/teachers/:id` | Admin | Remove teacher |
+| `GET` | `/api/database/schema` | Admin | Inspect SQLite tables, columns & foreign keys |
+| `POST` | `/api/database/query` | Admin | Execute read-only SQL learning queries |
 | `GET` | `/api/attendance` | Bearer | Get attendance logs |
 | `POST` | `/api/attendance` | Admin/Teacher | Mark class attendance & recalculate % |
 | `GET` | `/api/fees` | Bearer | List fee records (role-scoped) |
@@ -209,6 +221,15 @@ vercel --prod
 
 ---
 
-## Production Database Note
+## Relational Database Architecture (SQLite)
 
-Locally, the backend persists data to `data/db.json`. When running on **Vercel Serverless Functions**, the deployment filesystem is read-only except for `/tmp`, so `server.ts` automatically stores `db.json` inside `/tmp/ashivam-data` on Vercel. Because `/tmp` is ephemeral across serverless cold starts, connect an external managed database (such as PostgreSQL/Neon, Supabase, or Firebase Firestore) if you need permanent multi-instance persistence in production.
+This project uses **SQLite 3** (`database.ts`) with `PRAGMA foreign_keys = ON` and 11 normalized tables:
+
+- `users`, `classes`, `students`, `teachers`
+- `attendance`, `fees`, `results` (linked to `students(id)` via `ON DELETE CASCADE`)
+- `timetables`, `notices`, `feedback`, `inquiries`
+
+Log in as **Admin** (`admin@ashivam.edu` / `admin123`) and open **Database & SQL Lab** in the sidebar to inspect columns, foreign keys, and run interactive `SELECT` / `JOIN` / `GROUP BY` queries.
+
+### Production Serverless Note
+Locally, SQLite writes to `data/ashivam.db`. On **Vercel Serverless Functions**, the project root is read-only, so `database.ts` automatically initializes SQLite in `/tmp/ashivam-data/ashivam.db` (migrating seeded records from `data/db.json` on cold start). Because `/tmp` is ephemeral across serverless instances, switch to a managed hosted database (such as PostgreSQL/Neon, Turso/LibSQL, or Firestore) for permanent multi-instance cloud persistence.
