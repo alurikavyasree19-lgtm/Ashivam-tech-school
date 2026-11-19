@@ -1,13 +1,28 @@
-import type { DatabaseSync as DatabaseSyncInstance } from 'node:sqlite';
 import { createRequire } from 'module';
 import path from 'path';
 import fs from 'fs';
 import bcrypt from 'bcryptjs';
 import { fileURLToPath } from 'url';
 
-type DatabaseSync = DatabaseSyncInstance;
+export interface SqliteStatement {
+  get: (...params: any[]) => any;
+  all: (...params: any[]) => any[];
+  run: (...params: any[]) => { changes?: number };
+}
 
-function createSqliteDatabase(dbFilePath: string): DatabaseSync {
+export interface SqliteDatabase {
+  exec: (sql: string) => void;
+  prepare: (sql: string) => SqliteStatement;
+}
+
+type DatabaseSync = SqliteDatabase;
+
+let activeEngineName = 'SQLite 3 (Node Built-in node:sqlite)';
+export function getDbEngine() {
+  return activeEngineName;
+}
+
+function tryLoadNodeSqlite(dbFilePath: string): SqliteDatabase | null {
   try {
     const baseUrl =
       typeof import.meta !== 'undefined' && import.meta.url
@@ -15,12 +30,68 @@ function createSqliteDatabase(dbFilePath: string): DatabaseSync {
         : path.join(process.cwd(), 'package.json');
     const req = createRequire(baseUrl);
     const sqliteMod = req('node:sqlite');
-    return new sqliteMod.DatabaseSync(dbFilePath);
-  } catch (err: any) {
-    throw new Error(
-      `Failed to load built-in node:sqlite (${err?.message || 'module unavailable'}). Ensure Node.js 22.x is selected in Vercel Project Settings -> General -> Node.js Version.`
-    );
+    if (sqliteMod && typeof sqliteMod.DatabaseSync === 'function') {
+      activeEngineName = 'SQLite 3 (Node Built-in node:sqlite)';
+      return new sqliteMod.DatabaseSync(dbFilePath);
+    }
+    return null;
+  } catch {
+    return null;
   }
+}
+
+function sanitizeBindParams(params: any[]): any[] {
+  return params.map(p => (p === undefined ? null : p));
+}
+
+function wrapSqlJsDb(rawDb: any): SqliteDatabase {
+  return {
+    exec: (sql: string) => {
+      rawDb.exec(sql);
+    },
+    prepare: (sql: string) => ({
+      get: (...params: any[]) => {
+        const stmt = rawDb.prepare(sql);
+        try {
+          if (params.length > 0) stmt.bind(sanitizeBindParams(params));
+          return stmt.step() ? stmt.getAsObject() : undefined;
+        } finally {
+          stmt.free();
+        }
+      },
+      all: (...params: any[]) => {
+        const stmt = rawDb.prepare(sql);
+        try {
+          if (params.length > 0) stmt.bind(sanitizeBindParams(params));
+          const rows: any[] = [];
+          while (stmt.step()) {
+            rows.push(stmt.getAsObject());
+          }
+          return rows;
+        } finally {
+          stmt.free();
+        }
+      },
+      run: (...params: any[]) => {
+        if (params.length > 0) {
+          rawDb.run(sql, sanitizeBindParams(params));
+        } else {
+          rawDb.run(sql);
+        }
+        return { changes: typeof rawDb.getRowsModified === 'function' ? rawDb.getRowsModified() : 0 };
+      }
+    })
+  };
+}
+
+async function createSqlJsDatabase(dbFilePath: string): Promise<SqliteDatabase> {
+  const mod: any = await import('sql.js/dist/sql-wasm-inline.js');
+  const initSqlJs = mod.default || mod;
+  const SQL = await initSqlJs();
+  const existingBytes = fs.existsSync(dbFilePath) ? fs.readFileSync(dbFilePath) : undefined;
+  const rawDb = existingBytes && existingBytes.length > 0 ? new SQL.Database(existingBytes) : new SQL.Database();
+  activeEngineName = 'SQLite 3 (Serverless sql.js WASM)';
+  return wrapSqlJsDb(rawDb);
 }
 
 const __filename = typeof import.meta !== 'undefined' && import.meta.url ? fileURLToPath(import.meta.url) : '';
@@ -28,7 +99,8 @@ const __dirname = __filename ? path.dirname(__filename) : process.cwd();
 
 const candidateSeedPaths = [
   path.resolve(process.cwd(), 'data', 'db.json'),
-  path.resolve(__dirname, 'data', 'db.json')
+  path.resolve(__dirname, 'data', 'db.json'),
+  path.resolve(__dirname, '..', 'data', 'db.json')
 ];
 const SEED_JSON_FILE = candidateSeedPaths.find(p => fs.existsSync(p)) || candidateSeedPaths[0];
 const DATA_DIR = process.env.VERCEL ? path.join('/tmp', 'ashivam-data') : path.resolve(process.cwd(), 'data');
@@ -602,14 +674,7 @@ function importDataset(db: DatabaseSync, source: any) {
   }
 }
 
-export function getDb(): DatabaseSync {
-  if (dbInstance) return dbInstance;
-
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-  }
-
-  const db = createSqliteDatabase(SQLITE_DB_FILE);
+function initializeDatabaseContents(db: SqliteDatabase) {
   createTables(db);
 
   const countRow = db.prepare('SELECT COUNT(*) as cnt FROM students').get() as { cnt: number };
@@ -617,9 +682,7 @@ export function getDb(): DatabaseSync {
     let sourceData: any = null;
     const jsonCandidate = fs.existsSync(LEGACY_JSON_FILE)
       ? LEGACY_JSON_FILE
-      : fs.existsSync(SEED_JSON_FILE)
-        ? SEED_JSON_FILE
-        : null;
+      : candidateSeedPaths.find(p => fs.existsSync(p)) || (fs.existsSync(SEED_JSON_FILE) ? SEED_JSON_FILE : null);
 
     if (jsonCandidate) {
       try {
@@ -639,7 +702,46 @@ export function getDb(): DatabaseSync {
   if (!process.env.VERCEL) {
     syncDbToJson(db);
   }
-  return db;
+}
+
+let dbInitPromise: Promise<SqliteDatabase> | null = null;
+
+export async function ensureDbReady(): Promise<SqliteDatabase> {
+  if (dbInstance) return dbInstance;
+  if (dbInitPromise) return dbInitPromise;
+
+  dbInitPromise = (async () => {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+
+    const nativeDb = tryLoadNodeSqlite(SQLITE_DB_FILE);
+    const db = nativeDb || (await createSqlJsDatabase(SQLITE_DB_FILE));
+    initializeDatabaseContents(db);
+    return db;
+  })();
+
+  try {
+    return await dbInitPromise;
+  } catch (err) {
+    dbInitPromise = null;
+    throw err;
+  }
+}
+
+export function getDb(): SqliteDatabase {
+  if (dbInstance) return dbInstance;
+
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+
+  const nativeDb = tryLoadNodeSqlite(SQLITE_DB_FILE);
+  if (!nativeDb) {
+    throw new Error('SQLite database is still initializing. Call ensureDbReady() first.');
+  }
+  initializeDatabaseContents(nativeDb);
+  return nativeDb;
 }
 
 export function mapUserRow(row: any) {

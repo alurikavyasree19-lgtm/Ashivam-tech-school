@@ -1,7 +1,8 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createApp } from './app';
+import { createApp } from './app.js';
+import { ensureDbReady } from './database.js';
 
 export { createApp };
 
@@ -10,6 +11,7 @@ const __dirname = __filename ? path.dirname(__filename) : process.cwd();
 const PORT = Number(process.env.PORT) || 3000;
 
 async function startServer() {
+  await ensureDbReady();
   const app = createApp();
 
   if (process.env.NODE_ENV !== 'production') {

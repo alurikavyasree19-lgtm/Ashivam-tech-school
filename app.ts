@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import {
   getDb,
+  ensureDbReady,
+  getDbEngine,
   SQLITE_DB_FILE,
   commonStudentPasswordHash,
   commonTeacherPasswordHash,
@@ -17,7 +19,7 @@ import {
   mapTimetableRow,
   mapFeedbackRow,
   syncDbToJson
-} from './database';
+} from './database.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'ashivam-tech-secret-key-2026';
 
@@ -39,8 +41,15 @@ export function createApp() {
   const app = express();
   app.use(express.json());
 
-  // Initialize SQLite schema & seed/migrate on startup
-  getDb();
+  // Ensure SQLite schema & seed/migrate cleanly on first API request
+  app.use('/api', async (_req, _res, next) => {
+    try {
+      await ensureDbReady();
+      next();
+    } catch (err) {
+      next(err);
+    }
+  });
 
   const authenticateToken = (req: any, res: any, next: any) => {
     const authHeader = req.headers['authorization'];
@@ -799,7 +808,7 @@ export function createApp() {
     });
 
     res.json({
-      engine: 'SQLite 3 (Node Built-in node:sqlite)',
+      engine: getDbEngine(),
       storagePath: process.env.VERCEL ? '/tmp/ashivam-data/ashivam.db' : 'data/ashivam.db',
       foreignKeysEnabled: true,
       tables
@@ -945,7 +954,7 @@ export function createApp() {
     res.json({
       status: 'ok',
       database: 'sqlite',
-      engine: 'node:sqlite',
+      engine: getDbEngine(),
       storage: path.basename(SQLITE_DB_FILE),
       counts: {
         students: count('students'),

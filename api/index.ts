@@ -1,4 +1,5 @@
-import { createApp } from '../app';
+import { createApp } from '../app.js';
+import { ensureDbReady } from '../database.js';
 
 let cachedApp: ReturnType<typeof createApp> | null = null;
 
@@ -22,9 +23,10 @@ function normalizeVercelRequestUrl(req: any) {
   }
 }
 
-export default function handler(req: any, res: any) {
+export default async function handler(req: any, res: any) {
   try {
     normalizeVercelRequestUrl(req);
+    await ensureDbReady();
     if (!cachedApp) {
       cachedApp = createApp();
     }
