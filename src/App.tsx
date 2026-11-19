@@ -9,6 +9,7 @@ import {
 import LandingPage from './components/LandingPage';
 import { LoginSelectionPage, LoginForm } from './components/AuthViews';
 import DatabaseLab from './components/DatabaseLab';
+import { PORTAL_THEMES } from './portalVisuals';
 import {
   StudentFormModal,
   TeacherFormModal,
@@ -34,9 +35,15 @@ import {
 
 export default function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem('ashivam_token'));
-  const [currentUser, setCurrentUser] = useState<AuthUser | null>(
-    JSON.parse(localStorage.getItem('ashivam_user') || 'null')
-  );
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => {
+    try {
+      const raw = localStorage.getItem('ashivam_user');
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      localStorage.removeItem('ashivam_user');
+      return null;
+    }
+  });
   const [currentView, setCurrentView] = useState<'home' | 'login_select' | 'login_form' | 'dashboard'>(
     token && currentUser ? 'dashboard' : 'home'
   );
@@ -654,26 +661,34 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
   );
 
   return (
-    <div className="min-h-screen flex bg-slate-100 text-slate-900">
+    <div className="min-h-screen flex bg-[#F7F8FA] text-slate-900">
       {/* Desktop Sidebar */}
-      <aside className="w-64 bg-slate-900 text-slate-300 hidden md:flex flex-col justify-between border-r border-slate-800 shrink-0 sticky top-0 h-screen">
+      <aside className="w-64 bg-[#2C3A47] text-slate-300 hidden md:flex flex-col justify-between border-r border-[#222D38] shrink-0 sticky top-0 h-screen">
         <div className="p-5 space-y-6 overflow-y-auto">
-          <div className="flex items-center gap-3 pb-4 border-b border-slate-800">
-            <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center text-white shrink-0">
-              <GraduationCap className="w-5 h-5" />
+          <div className="flex items-center gap-3 pb-4 border-b border-white/10">
+            <div className="h-10 px-2 bg-white rounded-sm flex items-center justify-center shrink-0">
+              <img
+                src="/assets/aistudio/company_logo_c387ba1a.jpeg"
+                alt="Ashivam Technologies Logo"
+                referrerPolicy="no-referrer"
+                onError={e => {
+                  e.currentTarget.style.display = 'none';
+                }}
+                className="h-8 w-auto object-contain"
+              />
             </div>
             <div className="min-w-0">
               <p className="text-sm font-bold text-white truncate">ASHIVAM TECH</p>
-              <p className="text-[11px] text-slate-400 capitalize">{user.role} Portal</p>
+              <p className="text-[11px] text-[#F6C33B] font-semibold capitalize">{user.role} Portal</p>
             </div>
           </div>
 
           {renderSidebarNav()}
         </div>
 
-        <div className="p-5 border-t border-slate-800 space-y-3">
+        <div className="p-5 border-t border-white/10 space-y-3">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-white text-xs shrink-0">
+            <div className="w-8 h-8 rounded-sm bg-[#EC483E] flex items-center justify-center font-bold text-white text-xs shrink-0">
               {user.name[0]}
             </div>
             <div className="min-w-0">
@@ -684,7 +699,7 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
           <button
             type="button"
             onClick={onLogout}
-            className="w-full py-2 bg-slate-800 hover:bg-rose-700 text-slate-200 hover:text-white rounded-lg text-xs font-semibold transition-colors flex items-center justify-center gap-2"
+            className="w-full py-2 bg-[#222D38] hover:bg-[#EC483E] text-slate-200 hover:text-white rounded-sm text-xs font-semibold transition-colors flex items-center justify-center gap-2"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span>Sign Out</span>
@@ -696,9 +711,9 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
       {mobileNavOpen && (
         <div className="fixed inset-0 z-50 md:hidden flex">
           <div className="fixed inset-0 bg-slate-950/60" onClick={() => setMobileNavOpen(false)} />
-          <aside className="relative z-10 w-64 bg-slate-900 text-slate-300 flex flex-col justify-between p-5 h-full">
+          <aside className="relative z-10 w-64 bg-[#2C3A47] text-slate-300 flex flex-col justify-between p-5 h-full">
             <div className="space-y-6 overflow-y-auto">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <span className="text-sm font-bold text-white">ASHIVAM TECH</span>
                 <button type="button" onClick={() => setMobileNavOpen(false)} className="text-slate-400 hover:text-white">
                   <X className="w-5 h-5" />
@@ -709,7 +724,7 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
             <button
               type="button"
               onClick={onLogout}
-              className="w-full py-2.5 bg-slate-800 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2"
+              className="w-full py-2.5 bg-[#222D38] hover:bg-[#EC483E] text-white rounded-sm text-xs font-semibold flex items-center justify-center gap-2"
             >
               <LogOut className="w-4 h-4" />
               <span>Sign Out</span>
@@ -727,7 +742,7 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
               type="button"
               onClick={() => setMobileNavOpen(true)}
               aria-label="Open menu"
-              className="md:hidden p-2 -ml-1 rounded-lg text-slate-700 hover:bg-slate-100"
+              className="md:hidden p-2 -ml-1 rounded-sm text-slate-700 hover:bg-slate-100"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -735,7 +750,7 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
               <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-slate-500">
                 <span>ASHIVAM TECH</span>
                 <span>/</span>
-                <span className="capitalize">{user.role} Portal</span>
+                <span className="capitalize text-[#EC483E] font-semibold">{user.role} Portal</span>
               </div>
               <h1 className="text-base sm:text-lg font-bold text-slate-900 capitalize truncate">
                 {tabTitles[activeTab] || 'Dashboard'}
@@ -748,13 +763,13 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
               <button
                 type="button"
                 onClick={() => openAddStudentModal(selectedClassSection)}
-                className="px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
+                className="px-3.5 py-2 bg-[#EC483E] hover:bg-[#d9382e] text-white text-xs font-semibold rounded-sm inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors"
               >
                 <UserPlus className="w-3.5 h-3.5" />
                 <span>+ Add Student</span>
               </button>
             )}
-            <span className="hidden sm:inline text-xs font-medium text-slate-600 capitalize whitespace-nowrap">
+            <span className="hidden sm:inline text-xs font-semibold text-slate-700 capitalize whitespace-nowrap">
               {user.name}
             </span>
           </div>
@@ -766,11 +781,11 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
             {toasts.map(t => (
               <div
                 key={t.id}
-                className={`p-3.5 rounded-lg border shadow-lg text-xs flex items-center justify-between gap-3 ${
+                className={`p-3.5 rounded-sm border shadow-lg text-xs flex items-center justify-between gap-3 ${
                   t.type === 'error'
                     ? 'bg-rose-50 border-rose-200 text-rose-900'
                     : t.type === 'info'
-                      ? 'bg-slate-900 border-slate-700 text-white'
+                      ? 'bg-[#2C3A47] border-slate-700 text-white'
                       : 'bg-emerald-50 border-emerald-200 text-emerald-900'
                 }`}
               >
@@ -788,10 +803,13 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
 
         <div className="p-4 sm:p-6 lg:p-8 space-y-6 flex-1 max-w-7xl w-full mx-auto">
           {dataLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="h-28 bg-white border border-slate-200 rounded-xl animate-pulse" />
-              ))}
+            <div className="space-y-5">
+              <div className="h-44 bg-white border border-slate-200 rounded-sm animate-pulse" />
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-5">
+                {[1, 2, 3, 4].map(i => (
+                  <div key={i} className="h-28 bg-white border border-slate-200 rounded-sm animate-pulse" />
+                ))}
+              </div>
             </div>
           ) : (
             <>
@@ -799,203 +817,488 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
               {activeTab === 'overview' && (
                 <div className="space-y-6">
                   {/* TEACHER OVERVIEW */}
-                  {user.role === 'teacher' && (
-                    <div className="space-y-6">
-                      <div className="p-6 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div className="space-y-1">
-                          <h2 className="text-lg font-bold text-slate-900">Welcome, {user.name}</h2>
-                          <p className="text-xs text-slate-600">
-                            {user.email}
-                            {user.teacherId ? ` · ID ${user.teacherId}` : ''}
-                            {(user.subjects || []).length > 0 ? ` · ${(user.subjects || []).join(', ')}` : ''}
-                          </p>
-                          <p className="text-xs text-slate-700 tabular-nums">
-                            Assigned Sections: <strong>{visibleClassSections.join(', ')}</strong> · Assigned Students: <strong>{students.length}</strong>
-                          </p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setActiveTab('students');
-                            setSelectedClassSection(null);
-                          }}
-                          className="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs rounded-lg whitespace-nowrap shrink-0"
-                        >
-                          View Assigned Classes
-                        </button>
-                      </div>
+                  {user.role === 'teacher' && (() => {
+                    const avgAttendance =
+                      students.length > 0
+                        ? (students.reduce((sum, s) => sum + Number(s.attendancePercentage || 0), 0) / students.length).toFixed(1)
+                        : '0.0';
+                    const roleTheme = PORTAL_THEMES.teacher;
 
-                      <div className="space-y-3">
-                        <h3 className="text-xs font-semibold text-slate-500">Your Classes</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          {visibleClassSections.map(clsSec => {
-                            const count = students.filter(s => `${s.class}-${s.section}` === clsSec).length;
-                            return (
+                    return (
+                      <div className="space-y-6">
+                        <div className="relative rounded-sm overflow-hidden border border-slate-300 bg-[#2C3A47] text-white">
+                          <img
+                            src={roleTheme.bgImage}
+                            alt={roleTheme.wing}
+                            referrerPolicy="no-referrer"
+                            onError={e => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-r from-[#1E293B]/95 via-[#1E293B]/80 to-[#1E293B]/55" />
+                          <div className="relative z-10 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div className="space-y-2 max-w-2xl">
+                              <p className="text-xs font-bold uppercase tracking-wider text-[#F6C33B]">
+                                {roleTheme.wing} · Faculty Workspace
+                              </p>
+                              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-white">
+                                Welcome back, {user.name}
+                              </h2>
+                              <p className="text-xs sm:text-sm text-slate-200 tabular-nums">
+                                {user.email}
+                                {user.teacherId ? ` · Faculty ID ${user.teacherId}` : ''}
+                                {(user.subjects || []).length > 0 ? ` · Subject: ${(user.subjects || []).join(', ')}` : ''}
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2.5 shrink-0">
                               <button
                                 type="button"
-                                key={clsSec}
                                 onClick={() => {
                                   setActiveTab('students');
-                                  setSelectedClassSection(clsSec);
+                                  setSelectedClassSection(null);
                                 }}
-                                className="text-left p-5 bg-white rounded-xl border border-slate-200 hover:border-blue-600 transition-colors flex items-center justify-between"
+                                className="px-4 py-2.5 bg-[#EC483E] hover:bg-[#d9382e] text-white font-semibold text-xs rounded-sm whitespace-nowrap transition-colors"
                               >
-                                <div>
-                                  <h4 className="font-bold text-slate-900 text-base">Class {clsSec}</h4>
-                                  <p className="text-xs text-slate-500 mt-0.5 tabular-nums">{count} Assigned Students</p>
-                                </div>
-                                <ArrowRight className="w-4 h-4 text-blue-700 shrink-0" />
+                                Mark Attendance & View Classes
                               </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* PARENT OVERVIEW */}
-                  {user.role === 'parent' && (
-                    <div className="space-y-6">
-                      <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                        <h2 className="text-base font-bold text-slate-900">Your Registered Children</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {students.filter(s => (user.childrenIds || []).includes(s.id)).map(child => (
-                            <div key={child.id} className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between gap-3">
-                              <div>
-                                <p className="font-bold text-slate-900 text-sm">
-                                  {child.fullName} · Class {child.class}-{child.section}
-                                </p>
-                                <p className="text-xs text-slate-600 mt-0.5 tabular-nums">
-                                  Attendance: <strong className="text-emerald-700">{child.attendancePercentage}%</strong> · Fee: <strong>{child.feeStatus}</strong>
-                                </p>
-                              </div>
                               <button
                                 type="button"
-                                onClick={() => openStudentDetail(child.id)}
-                                className="px-3 py-1.5 bg-white border border-slate-300 hover:border-blue-600 text-slate-800 text-xs font-semibold rounded-lg shrink-0"
+                                onClick={() => setActiveTab('results')}
+                                className="px-4 py-2.5 bg-[#F6C33B] hover:bg-[#ebb62a] text-slate-900 font-bold text-xs rounded-sm whitespace-nowrap transition-colors"
                               >
-                                Report Card
+                                Enter Exam Marks
                               </button>
                             </div>
-                          ))}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                          <StatCard title="Assigned Sections" value={visibleClassSections.length} icon={<Building className="w-5 h-5 text-[#EC483E]" />} />
+                          <StatCard title="Assigned Students" value={students.length} icon={<Users className="w-5 h-5 text-blue-700" />} />
+                          <StatCard title="Avg Class Attendance" value={`${avgAttendance}%`} icon={<UserCheck className="w-5 h-5 text-emerald-700" />} />
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                          <div className="lg:col-span-7 bg-white border border-slate-200 rounded-sm p-6 space-y-4">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                              <h3 className="text-sm font-bold text-slate-900">Your Assigned Classes & Attendance</h3>
+                              <span className="text-xs text-slate-500 tabular-nums">{results.length} Exam Records</span>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              {visibleClassSections.map(clsSec => {
+                                const clsStudents = students.filter(s => `${s.class}-${s.section}` === clsSec);
+                                const clsAvg = clsStudents.length > 0
+                                  ? Math.round(clsStudents.reduce((acc, s) => acc + Number(s.attendancePercentage || 0), 0) / clsStudents.length)
+                                  : 0;
+                                return (
+                                  <button
+                                    type="button"
+                                    key={clsSec}
+                                    onClick={() => {
+                                      setActiveTab('students');
+                                      setSelectedClassSection(clsSec);
+                                    }}
+                                    className="text-left p-4 bg-[#F7F8FA] hover:bg-white rounded-sm border border-slate-200 hover:border-[#EC483E] transition-colors space-y-3"
+                                  >
+                                    <div className="flex items-center justify-between">
+                                      <div>
+                                        <h4 className="font-bold text-slate-900 text-base">Class {clsSec}</h4>
+                                        <p className="text-xs text-slate-500 tabular-nums">{clsStudents.length} Students</p>
+                                      </div>
+                                      <ArrowRight className="w-4 h-4 text-[#EC483E] shrink-0" />
+                                    </div>
+                                    <div className="space-y-1">
+                                      <div className="flex justify-between text-[11px] text-slate-600 tabular-nums">
+                                        <span>Attendance Rate</span>
+                                        <span className="font-semibold text-slate-900">{clsAvg}%</span>
+                                      </div>
+                                      <div className="h-1.5 w-full bg-slate-200 rounded-sm overflow-hidden">
+                                        <div className="h-full bg-emerald-600" style={{ width: `${Math.min(100, clsAvg)}%` }} />
+                                      </div>
+                                    </div>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          <div className="lg:col-span-5 bg-white border border-slate-200 rounded-sm p-6 space-y-4">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                              <h3 className="text-sm font-bold text-slate-900">Recent Parent Notes & Notices</h3>
+                              <button type="button" onClick={() => setActiveTab('notices')} className="text-xs font-semibold text-[#EC483E] hover:underline">
+                                View all
+                              </button>
+                            </div>
+                            <div className="space-y-3 text-xs">
+                              {feedbackList.slice(0, 2).map(fb => (
+                                <div key={fb.id} className="p-3 bg-[#F7F8FA] border border-slate-200 rounded-sm space-y-1">
+                                  <div className="flex justify-between font-semibold text-slate-900">
+                                    <span>From {fb.sender}</span>
+                                    <span className="text-slate-400 font-normal tabular-nums">{fb.date}</span>
+                                  </div>
+                                  <p className="text-slate-600 line-clamp-2">{fb.message}</p>
+                                </div>
+                              ))}
+                              {notices.slice(0, 2).map(n => (
+                                <div key={n.id} className="p-3 bg-amber-50/70 border border-amber-200 rounded-sm space-y-1">
+                                  <div className="flex justify-between font-semibold text-slate-900">
+                                    <span>{n.title}</span>
+                                    <span className="text-slate-500 font-normal tabular-nums">{n.date}</span>
+                                  </div>
+                                  <p className="text-slate-700 line-clamp-2">{n.description}</p>
+                                </div>
+                              ))}
+                              {feedbackList.length === 0 && notices.length === 0 && (
+                                <p className="text-slate-500">No recent parent notes or school notices.</p>
+                              )}
+                            </div>
+                          </div>
                         </div>
                       </div>
+                    );
+                  })()}
 
-                      <div className="bg-white p-6 rounded-xl border border-slate-200 space-y-4">
-                        <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
-                          <MessageSquare className="w-4 h-4 text-blue-700" />
-                          <span>Send Leave Note or Feedback to Teacher</span>
-                        </h3>
-                        {feedbackSent && (
-                          <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-lg font-medium">
-                            Leave note delivered to teacher.
+                  {/* PARENT OVERVIEW */}
+                  {user.role === 'parent' && (() => {
+                    const children = students.filter(s => (user.childrenIds || []).includes(s.id));
+                    const roleTheme = PORTAL_THEMES.parent;
+
+                    return (
+                      <div className="space-y-6">
+                        <div className="relative rounded-sm overflow-hidden border border-slate-300 bg-[#2C3A47] text-white">
+                          <img
+                            src={roleTheme.bgImage}
+                            alt={roleTheme.wing}
+                            referrerPolicy="no-referrer"
+                            onError={e => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-r from-[#1E293B]/95 via-[#1E293B]/80 to-[#1E293B]/55" />
+                          <div className="relative z-10 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div className="space-y-2 max-w-2xl">
+                              <p className="text-xs font-bold uppercase tracking-wider text-[#F6C33B]">
+                                {roleTheme.wing} · Family Connect
+                              </p>
+                              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-white">
+                                Welcome, {user.name}
+                              </h2>
+                              <p className="text-xs sm:text-sm text-slate-200 tabular-nums">
+                                Linked Children: <strong>{children.length}</strong> · Active Notices: <strong>{notices.length}</strong>
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2.5 shrink-0">
+                              <button
+                                type="button"
+                                onClick={() => setActiveTab('fees')}
+                                className="px-4 py-2.5 bg-[#F6C33B] hover:bg-[#ebb62a] text-slate-900 font-bold text-xs rounded-sm whitespace-nowrap transition-colors"
+                              >
+                                Fee Ledger
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setActiveTab('results')}
+                                className="px-4 py-2.5 bg-[#EC483E] hover:bg-[#d9382e] text-white font-semibold text-xs rounded-sm whitespace-nowrap transition-colors"
+                              >
+                                View Report Cards
+                              </button>
+                            </div>
                           </div>
-                        )}
-                        <form onSubmit={handleSendFeedback} className="space-y-3 text-xs">
-                          <div>
-                            <label className="block font-semibold text-slate-700 mb-1">Select Teacher</label>
-                            <select
-                              value={parentFeedback.teacherName}
-                              onChange={e => setParentFeedback({ ...parentFeedback, teacherName: e.target.value })}
-                              className="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-lg text-sm"
-                            >
-                              {teachers.map(t => (
-                                <option key={t.id} value={t.name}>
-                                  {t.name} ({t.subject})
-                                </option>
+                        </div>
+
+                        <div className="bg-white border border-slate-200 rounded-sm p-6 space-y-4">
+                          <h2 className="text-base font-bold text-slate-900">Your Registered Children</h2>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            {children.map(child => {
+                              const childLatestResult = results.find(r => r.studentId === child.id);
+                              return (
+                                <div key={child.id} className="p-5 bg-[#F7F8FA] rounded-sm border border-slate-200 space-y-4">
+                                  <div className="flex items-start justify-between gap-3">
+                                    <div>
+                                      <h3 className="font-bold text-slate-900 text-base">{child.fullName}</h3>
+                                      <p className="text-xs text-slate-600 mt-0.5 tabular-nums">
+                                        Class {child.class}-{child.section} · Roll #{child.rollNumber} · ID {child.studentId}
+                                      </p>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      onClick={() => openStudentDetail(child.id)}
+                                      className="px-3.5 py-1.5 bg-[#EC483E] hover:bg-[#d9382e] text-white text-xs font-semibold rounded-sm shrink-0 transition-colors"
+                                    >
+                                      Report Card
+                                    </button>
+                                  </div>
+
+                                  <div className="space-y-1.5">
+                                    <div className="flex justify-between text-xs text-slate-600 tabular-nums">
+                                      <span>Attendance Progress</span>
+                                      <span className="font-bold text-emerald-700">{child.attendancePercentage}%</span>
+                                    </div>
+                                    <div className="h-2 bg-slate-200 rounded-sm overflow-hidden">
+                                      <div className="h-full bg-emerald-600" style={{ width: `${Math.min(100, Number(child.attendancePercentage))}%` }} />
+                                    </div>
+                                  </div>
+
+                                  <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-700 tabular-nums">
+                                    <span>
+                                      Fee Status: <strong className={child.feeStatus === 'Paid' ? 'text-emerald-700' : 'text-amber-700'}>{child.feeStatus}</strong>
+                                    </span>
+                                    <span>
+                                      Latest Score: <strong>{childLatestResult ? `${childLatestResult.subject} (${childLatestResult.grade})` : 'Pending'}</strong>
+                                    </span>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                          <div className="lg:col-span-7 bg-white p-6 rounded-sm border border-slate-200 space-y-4">
+                            <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
+                              <MessageSquare className="w-4 h-4 text-[#EC483E]" />
+                              <span>Send Leave Note or Feedback to Teacher</span>
+                            </h3>
+                            {feedbackSent && (
+                              <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-sm font-medium">
+                                Leave note delivered to teacher.
+                              </div>
+                            )}
+                            <form onSubmit={handleSendFeedback} className="space-y-3 text-xs">
+                              <div>
+                                <label className="block font-semibold text-slate-700 mb-1">Select Teacher</label>
+                                <select
+                                  value={parentFeedback.teacherName}
+                                  onChange={e => setParentFeedback({ ...parentFeedback, teacherName: e.target.value })}
+                                  className="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-[#EC483E]"
+                                >
+                                  {teachers.map(t => (
+                                    <option key={t.id} value={t.name}>
+                                      {t.name} ({t.subject})
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div>
+                                <label className="block font-semibold text-slate-700 mb-1">Message / Leave Note</label>
+                                <textarea
+                                  required
+                                  rows={3}
+                                  value={parentFeedback.message}
+                                  onChange={e => setParentFeedback({ ...parentFeedback, message: e.target.value })}
+                                  placeholder="Write your note for the class teacher..."
+                                  className="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-[#EC483E]"
+                                />
+                              </div>
+                              <button type="submit" className="px-5 py-2.5 bg-[#EC483E] hover:bg-[#d9382e] text-white font-semibold rounded-sm transition-colors">
+                                Send Message
+                              </button>
+                            </form>
+                          </div>
+
+                          <div className="lg:col-span-5 bg-white p-6 rounded-sm border border-slate-200 space-y-4">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                              <h3 className="text-sm font-bold text-slate-900">School Notices & Sent Notes</h3>
+                              <button type="button" onClick={() => setActiveTab('notices')} className="text-xs font-semibold text-[#EC483E] hover:underline">
+                                All notices
+                              </button>
+                            </div>
+                            <div className="space-y-3 text-xs">
+                              {notices.slice(0, 3).map(n => (
+                                <div key={n.id} className="p-3 bg-[#F7F8FA] border border-slate-200 rounded-sm space-y-1">
+                                  <div className="flex justify-between font-semibold text-slate-900">
+                                    <span>{n.title}</span>
+                                    <span className="text-slate-400 font-normal tabular-nums">{n.date}</span>
+                                  </div>
+                                  <p className="text-slate-600 line-clamp-2">{n.description}</p>
+                                </div>
                               ))}
-                            </select>
+                              {feedbackList.slice(0, 2).map(fb => (
+                                <div key={fb.id} className="p-3 bg-emerald-50/60 border border-emerald-200 rounded-sm space-y-1">
+                                  <p className="font-semibold text-slate-900">Sent to {fb.teacherName} · {fb.date}</p>
+                                  <p className="text-slate-700 line-clamp-2">{fb.message}</p>
+                                </div>
+                              ))}
+                            </div>
                           </div>
-                          <div>
-                            <label className="block font-semibold text-slate-700 mb-1">Message / Leave Note</label>
-                            <textarea
-                              required
-                              rows={3}
-                              value={parentFeedback.message}
-                              onChange={e => setParentFeedback({ ...parentFeedback, message: e.target.value })}
-                              placeholder="Write your note for the class teacher..."
-                              className="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-lg text-sm"
-                            />
-                          </div>
-                          <button type="submit" className="px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg">
-                            Send Message
-                          </button>
-                        </form>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    );
+                  })()}
 
                   {/* STUDENT OVERVIEW */}
                   {user.role === 'student' && (() => {
                     const me = students[0];
                     const myFee = fees[0];
+                    const roleTheme = PORTAL_THEMES.student;
+                    const avgMarks =
+                      results.length > 0
+                        ? Math.round(
+                            results.reduce(
+                              (sum, r) => sum + ((Number(r.marksObtained) / Math.max(1, Number(r.maxMarks))) * 100),
+                              0
+                            ) / results.length
+                          )
+                        : null;
+
                     return (
                       <div className="space-y-6">
-                        <div className="p-6 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                          <div>
-                            <h2 className="text-lg font-bold text-slate-900">Welcome, {me?.fullName || user.name}</h2>
-                            <p className="text-xs text-slate-600 mt-1 tabular-nums">
-                              Class {me ? `${me.class}-${me.section}` : `${user.class}-${user.section}`} · Roll #{me?.rollNumber || user.rollNumber} · {me?.email || user.email}
-                            </p>
-                          </div>
-                          <div className="flex flex-wrap gap-2">
-                            {me && (
+                        <div className="relative rounded-sm overflow-hidden border border-slate-300 bg-[#2C3A47] text-white">
+                          <img
+                            src={roleTheme.bgImage}
+                            alt={roleTheme.wing}
+                            referrerPolicy="no-referrer"
+                            onError={e => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-r from-[#1E293B]/95 via-[#1E293B]/80 to-[#1E293B]/55" />
+                          <div className="relative z-10 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div className="space-y-2">
+                              <p className="text-xs font-bold uppercase tracking-wider text-[#F6C33B]">
+                                {roleTheme.wing} · Student Academic Space
+                              </p>
+                              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-white">
+                                Welcome, {me?.fullName || user.name}
+                              </h2>
+                              <p className="text-xs sm:text-sm text-slate-200 tabular-nums">
+                                Class {me ? `${me.class}-${me.section}` : `${user.class}-${user.section}`} · Roll #{me?.rollNumber || user.rollNumber} · {me?.email || user.email}
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2.5 shrink-0">
+                              {me && (
+                                <button
+                                  type="button"
+                                  onClick={() => openStudentDetail(me.id)}
+                                  className="px-4 py-2.5 bg-[#EC483E] hover:bg-[#d9382e] text-white font-semibold text-xs rounded-sm transition-colors"
+                                >
+                                  Full Report Card
+                                </button>
+                              )}
                               <button
                                 type="button"
-                                onClick={() => openStudentDetail(me.id)}
-                                className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-lg"
+                                onClick={() => setActiveTab('timetable')}
+                                className="px-4 py-2.5 bg-[#F6C33B] hover:bg-[#ebb62a] text-slate-900 font-bold text-xs rounded-sm transition-colors"
                               >
-                                Full Report Card
+                                Class Timetable
                               </button>
-                            )}
-                            <button type="button" onClick={() => setActiveTab('fees')} className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs rounded-lg">
-                              Fee Status
-                            </button>
-                            <button type="button" onClick={() => setActiveTab('results')} className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs rounded-lg">
-                              Exam Results
-                            </button>
-                            <button type="button" onClick={() => setActiveTab('timetable')} className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs rounded-lg">
-                              Timetable
-                            </button>
+                              <button
+                                type="button"
+                                onClick={() => setActiveTab('fees')}
+                                className="px-4 py-2.5 bg-white/15 hover:bg-white/25 border border-white/25 text-white font-semibold text-xs rounded-sm transition-colors"
+                              >
+                                Fee Ledger
+                              </button>
+                            </div>
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                           <StatCard title="Attendance" value={me ? `${me.attendancePercentage}%` : '—'} icon={<UserCheck className="w-5 h-5 text-emerald-700" />} />
-                          <StatCard title="Fee Status" value={myFee ? myFee.status : '—'} icon={<DollarSign className="w-5 h-5 text-amber-700" />} />
-                          <StatCard title="Latest Exam" value={results.length > 0 ? `${results[0].marksObtained}/${results[0].maxMarks} (${results[0].grade})` : 'Pending'} icon={<Award className="w-5 h-5 text-blue-700" />} />
+                          <StatCard
+                            title="Tuition Fee Status"
+                            value={myFee ? `${myFee.status} (₹${myFee.paidAmount.toLocaleString()})` : '—'}
+                            icon={<DollarSign className="w-5 h-5 text-[#d99b08]" />}
+                          />
+                          <StatCard
+                            title="Exam Average"
+                            value={avgMarks !== null ? `${avgMarks}% (${results.length} Subjects)` : 'Pending'}
+                            icon={<Award className="w-5 h-5 text-[#EC483E]" />}
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                          <div className="lg:col-span-6 bg-white p-6 rounded-sm border border-slate-200 space-y-4">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                              <h3 className="font-bold text-slate-900 text-base">Subject Exam Performance</h3>
+                              <button type="button" onClick={() => setActiveTab('results')} className="text-xs font-semibold text-[#EC483E] hover:underline">
+                                Detailed marks
+                              </button>
+                            </div>
+                            {results.length > 0 ? (
+                              <div className="space-y-3.5">
+                                {results.map(r => {
+                                  const pct = Math.round((r.marksObtained / Math.max(1, r.maxMarks)) * 100);
+                                  return (
+                                    <div key={r.id} className="space-y-1">
+                                      <div className="flex items-center justify-between text-xs tabular-nums">
+                                        <span className="font-semibold text-slate-900">{r.subject}</span>
+                                        <span className="text-slate-600">
+                                          <strong className="text-slate-900">{r.marksObtained}/{r.maxMarks}</strong> · Grade {r.grade}
+                                        </span>
+                                      </div>
+                                      <div className="h-2 bg-slate-100 rounded-sm overflow-hidden">
+                                        <div
+                                          className="h-full bg-[#EC483E]"
+                                          style={{ width: `${Math.min(100, pct)}%` }}
+                                        />
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            ) : (
+                              <p className="text-xs text-slate-500">Exam results will appear here once published by your teacher.</p>
+                            )}
+                          </div>
+
+                          <div className="lg:col-span-6 bg-white p-6 rounded-sm border border-slate-200 space-y-4">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                              <h3 className="font-bold text-slate-900 text-base">Latest Campus Notices</h3>
+                              <button type="button" onClick={() => setActiveTab('notices')} className="text-xs font-semibold text-[#EC483E] hover:underline">
+                                View all
+                              </button>
+                            </div>
+                            <div className="space-y-3 text-xs">
+                              {notices.slice(0, 3).map(n => (
+                                <div key={n.id} className="p-3 bg-[#F7F8FA] border border-slate-200 rounded-sm space-y-1">
+                                  <div className="flex justify-between font-semibold text-slate-900">
+                                    <span>{n.title}</span>
+                                    <span className="text-slate-400 font-normal tabular-nums">{n.date}</span>
+                                  </div>
+                                  <p className="text-slate-600">{n.description}</p>
+                                </div>
+                              ))}
+                              {notices.length === 0 && (
+                                <p className="text-slate-500">No notices posted yet.</p>
+                              )}
+                            </div>
+                          </div>
                         </div>
 
                         {me && (
-                          <div className="bg-white p-6 rounded-xl border border-slate-200 space-y-4">
+                          <div className="bg-white p-6 rounded-sm border border-slate-200 space-y-4">
                             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                               <h3 className="font-bold text-slate-900 text-base">Student Profile Details</h3>
                               <span className="font-mono text-xs text-slate-600">ID: {me.studentId}</span>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-                              <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg">
+                              <div className="p-3.5 bg-[#F7F8FA] border border-slate-200 rounded-sm">
                                 <span className="text-slate-500 block">Full Name</span>
                                 <span className="font-semibold text-slate-900 mt-0.5 block">{me.fullName}</span>
                               </div>
-                              <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg">
+                              <div className="p-3.5 bg-[#F7F8FA] border border-slate-200 rounded-sm">
                                 <span className="text-slate-500 block">Class & Roll Number</span>
                                 <span className="font-semibold text-slate-900 mt-0.5 block tabular-nums">
                                   Class {me.class}-{me.section} · Roll #{me.rollNumber}
                                 </span>
                               </div>
-                              <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg">
+                              <div className="p-3.5 bg-[#F7F8FA] border border-slate-200 rounded-sm">
                                 <span className="text-slate-500 block">Login Email</span>
-                                <span className="font-mono font-semibold text-blue-700 mt-0.5 block">{me.email}</span>
+                                <span className="font-mono font-semibold text-[#EC483E] mt-0.5 block">{me.email}</span>
                               </div>
-                              <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg">
+                              <div className="p-3.5 bg-[#F7F8FA] border border-slate-200 rounded-sm">
                                 <span className="text-slate-500 block">Date of Birth / Gender</span>
                                 <span className="font-semibold text-slate-900 mt-0.5 block tabular-nums">{me.dob || '—'} · {me.gender}</span>
                               </div>
-                              <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg">
+                              <div className="p-3.5 bg-[#F7F8FA] border border-slate-200 rounded-sm">
                                 <span className="text-slate-500 block">Blood Group</span>
                                 <span className="font-semibold text-slate-900 mt-0.5 block">{me.bloodGroup || 'O+'}</span>
                               </div>
-                              <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg">
+                              <div className="p-3.5 bg-[#F7F8FA] border border-slate-200 rounded-sm">
                                 <span className="text-slate-500 block">Parent / Guardian</span>
                                 <span className="font-semibold text-slate-900 mt-0.5 block">{me.parentName} · {me.parentPhone}</span>
                               </div>
@@ -1007,84 +1310,198 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
                   })()}
 
                   {/* ADMIN OVERVIEW */}
-                  {stats && user.role === 'admin' && (
-                    <div className="space-y-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        <StatCard title="Enrolled Students" value={stats.totalStudents} icon={<Users className="w-5 h-5 text-blue-700" />} />
-                        <StatCard title="Faculty Members" value={teachers.length} icon={<UserCheck className="w-5 h-5 text-indigo-700" />} />
-                        <StatCard
-                          title="Tuition Collected"
-                          value={`₹${Number(stats.feesCollected || 0).toLocaleString()}`}
-                          icon={<DollarSign className="w-5 h-5 text-emerald-700" />}
-                        />
-                        <StatCard title="Active Grades" value={`${stats.totalClasses} (10 Sec)`} icon={<Building className="w-5 h-5 text-slate-700" />} />
-                      </div>
+                  {stats && user.role === 'admin' && (() => {
+                    const roleTheme = PORTAL_THEMES.admin;
+                    const collected = Number(stats.feesCollected || 0);
+                    const expected = Math.max(1, Number(stats.feesExpected || 0));
+                    const feePct = Math.round((collected / expected) * 100);
+                    const grades = ['1st', '2nd', '3rd', '4th', '5th'];
+                    const maxGradeCount = Math.max(
+                      1,
+                      ...grades.map(g => students.filter(s => s.class === g).length)
+                    );
 
-                      <div className="bg-white p-6 rounded-xl border border-slate-200 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                        <div className="space-y-1">
-                          <h2 className="text-base font-bold text-slate-900">Administration Shortcuts</h2>
-                          <p className="text-xs text-slate-600">
-                            Manage enrollments, faculty class assignments, notices, or explore the live SQLite relational database.
-                          </p>
-                        </div>
-                        <div className="flex flex-wrap gap-2.5">
-                          <button
-                            type="button"
-                            onClick={() => openAddStudentModal()}
-                            className="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs rounded-lg inline-flex items-center gap-1.5"
-                          >
-                            <UserPlus className="w-4 h-4" />
-                            <span>+ Add Student</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={openAddTeacherModal}
-                            className="px-4 py-2 bg-indigo-700 hover:bg-indigo-800 text-white font-semibold text-xs rounded-lg inline-flex items-center gap-1.5"
-                          >
-                            <UserCheck className="w-4 h-4" />
-                            <span>+ Add Teacher</span>
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Class Strength Overview Grid */}
-                      <div className="bg-white p-6 rounded-xl border border-slate-200 space-y-4">
-                        <div className="flex items-center justify-between">
-                          <h3 className="text-sm font-bold text-slate-900">Section-Wise Enrollment (1st-A to 5th-B)</h3>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setActiveTab('students');
-                              setSelectedClassSection(null);
+                    return (
+                      <div className="space-y-6">
+                        <div className="relative rounded-sm overflow-hidden border border-slate-300 bg-[#2C3A47] text-white">
+                          <img
+                            src={roleTheme.bgImage}
+                            alt={roleTheme.wing}
+                            referrerPolicy="no-referrer"
+                            onError={e => {
+                              e.currentTarget.style.display = 'none';
                             }}
-                            className="text-xs font-semibold text-blue-700 hover:underline"
-                          >
-                            View all classes
-                          </button>
-                        </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                          {ALL_CLASS_SECTIONS.map(clsSec => {
-                            const count = students.filter(s => `${s.class}-${s.section}` === clsSec).length;
-                            return (
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-r from-[#1E293B]/95 via-[#1E293B]/80 to-[#1E293B]/55" />
+                          <div className="relative z-10 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div className="space-y-2 max-w-2xl">
+                              <p className="text-xs font-bold uppercase tracking-wider text-[#F6C33B]">
+                                {roleTheme.wing} · Live SQLite Command Center
+                              </p>
+                              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-white">
+                                School Operations Overview
+                              </h2>
+                              <p className="text-xs sm:text-sm text-slate-200 tabular-nums">
+                                Managing <strong>{stats.totalStudents} students</strong> across 10 sections, <strong>{teachers.length} teachers</strong>, and <strong>{stats.pendingInquiries || 0} pending admission inquiries</strong>.
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2.5 shrink-0">
                               <button
                                 type="button"
-                                key={clsSec}
-                                onClick={() => {
-                                  setActiveTab('students');
-                                  setSelectedClassSection(clsSec);
-                                }}
-                                className="p-3.5 bg-slate-50 hover:bg-white border border-slate-200 hover:border-blue-600 rounded-lg text-left transition-colors"
+                                onClick={() => openAddStudentModal()}
+                                className="px-4 py-2.5 bg-[#EC483E] hover:bg-[#d9382e] text-white font-semibold text-xs rounded-sm inline-flex items-center gap-1.5 transition-colors"
                               >
-                                <p className="text-xs font-bold text-slate-900">Class {clsSec}</p>
-                                <p className="font-mono text-lg font-bold text-blue-700 mt-1 tabular-nums">{count}</p>
-                                <p className="text-[11px] text-slate-500">students</p>
+                                <UserPlus className="w-4 h-4" />
+                                <span>+ Add Student</span>
                               </button>
-                            );
-                          })}
+                              <button
+                                type="button"
+                                onClick={openAddTeacherModal}
+                                className="px-4 py-2.5 bg-[#F6C33B] hover:bg-[#ebb62a] text-slate-900 font-bold text-xs rounded-sm inline-flex items-center gap-1.5 transition-colors"
+                              >
+                                <UserCheck className="w-4 h-4" />
+                                <span>+ Add Teacher</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                          <StatCard title="Enrolled Students" value={stats.totalStudents} icon={<Users className="w-5 h-5 text-[#EC483E]" />} />
+                          <StatCard title="Faculty Members" value={teachers.length} icon={<UserCheck className="w-5 h-5 text-blue-700" />} />
+                          <StatCard
+                            title="Tuition Collected"
+                            value={`₹${collected.toLocaleString()}`}
+                            icon={<DollarSign className="w-5 h-5 text-emerald-700" />}
+                          />
+                          <StatCard title="Pending Inquiries" value={stats.pendingInquiries ?? inquiries.length} icon={<Building className="w-5 h-5 text-[#d99b08]" />} />
+                        </div>
+
+                        {/* Visual Data Analytics Strip: Grade Enrollment + Tuition Collection */}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                          <div className="lg:col-span-7 bg-white p-6 rounded-sm border border-slate-200 space-y-4">
+                            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                              <h3 className="text-sm font-bold text-slate-900">Grade-Wise Student Distribution (1st – 5th)</h3>
+                              <div className="flex items-center gap-4 text-[11px] text-slate-600">
+                                <span className="inline-flex items-center gap-1.5">
+                                  <span className="w-2.5 h-2.5 bg-[#EC483E] inline-block" /> Section A
+                                </span>
+                                <span className="inline-flex items-center gap-1.5">
+                                  <span className="w-2.5 h-2.5 bg-[#F6C33B] inline-block" /> Section B
+                                </span>
+                              </div>
+                            </div>
+                            <div className="space-y-3">
+                              {grades.map(grade => {
+                                const secA = students.filter(s => s.class === grade && s.section === 'A').length;
+                                const secB = students.filter(s => s.class === grade && s.section === 'B').length;
+                                const total = secA + secB;
+                                return (
+                                  <div key={grade} className="space-y-1">
+                                    <div className="flex justify-between text-xs tabular-nums">
+                                      <span className="font-semibold text-slate-900">{grade} Grade</span>
+                                      <span className="text-slate-600">
+                                        A: {secA} · B: {secB} · <strong className="text-slate-900">{total} total</strong>
+                                      </span>
+                                    </div>
+                                    <div className="h-2.5 bg-slate-100 rounded-sm overflow-hidden flex">
+                                      <div
+                                        className="h-full bg-[#EC483E]"
+                                        style={{ width: `${(secA / maxGradeCount) * 100}%` }}
+                                      />
+                                      <div
+                                        className="h-full bg-[#F6C33B]"
+                                        style={{ width: `${(secB / maxGradeCount) * 100}%` }}
+                                      />
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          <div className="lg:col-span-5 bg-white p-6 rounded-sm border border-slate-200 space-y-5 flex flex-col justify-between">
+                            <div className="space-y-3">
+                              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                                <h3 className="text-sm font-bold text-slate-900">Tuition Ledger Progress</h3>
+                                <span className="font-mono text-xs font-bold text-emerald-700 tabular-nums">{feePct}% Paid</span>
+                              </div>
+                              <div className="space-y-1.5">
+                                <div className="h-3 bg-slate-100 rounded-sm overflow-hidden">
+                                  <div className="h-full bg-emerald-600" style={{ width: `${Math.min(100, feePct)}%` }} />
+                                </div>
+                                <div className="flex justify-between text-xs text-slate-600 tabular-nums">
+                                  <span>Collected: ₹{collected.toLocaleString()}</span>
+                                  <span>Target: ₹{expected.toLocaleString()}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="space-y-2.5 pt-3 border-t border-slate-100">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-xs font-bold text-slate-900">Recent Notices & Inquiries</h4>
+                                <button type="button" onClick={() => setActiveTab('notices')} className="text-xs font-semibold text-[#EC483E] hover:underline">
+                                  Open Desk
+                                </button>
+                              </div>
+                              <div className="space-y-2 text-xs">
+                                {notices.slice(0, 2).map(n => (
+                                  <div key={n.id} className="p-2.5 bg-[#F7F8FA] border border-slate-200 rounded-sm flex items-center justify-between gap-2">
+                                    <span className="font-medium text-slate-900 truncate">{n.title}</span>
+                                    <span className="text-slate-500 shrink-0 tabular-nums">{n.date}</span>
+                                  </div>
+                                ))}
+                                {inquiries.slice(0, 1).map(inq => (
+                                  <div key={inq.id} className="p-2.5 bg-amber-50/70 border border-amber-200 rounded-sm flex items-center justify-between gap-2">
+                                    <span className="font-medium text-slate-900 truncate">Inquiry: {inq.name}</span>
+                                    <span className="text-amber-800 font-semibold shrink-0">{inq.status}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Class Strength Overview Grid */}
+                        <div className="bg-white p-6 rounded-sm border border-slate-200 space-y-4">
+                          <div className="flex items-center justify-between">
+                            <h3 className="text-sm font-bold text-slate-900">Section-Wise Enrollment (1st-A to 5th-B)</h3>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setActiveTab('students');
+                                setSelectedClassSection(null);
+                              }}
+                              className="text-xs font-semibold text-[#EC483E] hover:underline"
+                            >
+                              View all classes
+                            </button>
+                          </div>
+                          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                            {ALL_CLASS_SECTIONS.map(clsSec => {
+                              const count = students.filter(s => `${s.class}-${s.section}` === clsSec).length;
+                              return (
+                                <button
+                                  type="button"
+                                  key={clsSec}
+                                  onClick={() => {
+                                    setActiveTab('students');
+                                    setSelectedClassSection(clsSec);
+                                  }}
+                                  className="p-3.5 bg-[#F7F8FA] hover:bg-white border border-slate-200 hover:border-[#EC483E] rounded-sm text-left transition-colors"
+                                >
+                                  <p className="text-xs font-bold text-slate-900">Class {clsSec}</p>
+                                  <p className="font-mono text-lg font-bold text-[#EC483E] mt-1 tabular-nums">{count}</p>
+                                  <p className="text-[11px] text-slate-500">students</p>
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    );
+                  })()}
                 </div>
               )}
 
@@ -1777,12 +2194,12 @@ function Dashboard({ user, token, onLogout }: { user: AuthUser; token: string; o
 
 function StatCard({ title, value, icon }: { title: string; value: any; icon: React.ReactNode }) {
   return (
-    <div className="p-5 rounded-xl border border-slate-200 bg-white flex items-center justify-between gap-4">
+    <div className="p-5 rounded-sm border border-slate-200 bg-white flex items-center justify-between gap-4">
       <div>
         <p className="text-xs font-medium text-slate-500">{title}</p>
-        <p className="text-2xl font-bold text-slate-900 mt-1 tabular-nums">{value}</p>
+        <p className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 tabular-nums">{value}</p>
       </div>
-      <div className="w-10 h-10 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center shrink-0">
+      <div className="w-10 h-10 bg-[#F7F8FA] border border-slate-200 rounded-sm flex items-center justify-center shrink-0">
         {icon}
       </div>
     </div>
@@ -1794,8 +2211,8 @@ function SidebarItem({ icon, label, active, onClick }: { icon: React.ReactNode; 
     <button
       type="button"
       onClick={onClick}
-      className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium transition-colors text-xs text-left ${
-        active ? 'bg-blue-700 text-white font-semibold' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+      className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-sm font-medium transition-colors text-xs text-left ${
+        active ? 'bg-[#EC483E] text-white font-semibold' : 'text-slate-300 hover:text-white hover:bg-white/10'
       }`}
     >
       {icon}

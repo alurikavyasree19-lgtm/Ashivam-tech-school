@@ -1,5 +1,40 @@
 {
   "seedVersion": 5,
+  "parents": [
+    {
+      "id": "p1",
+      "parentId": "P101",
+      "name": "Mr. Anil Kumar",
+      "email": "kumar@ashivam.edu",
+      "phone": "+91 98765 43210",
+      "address": "Plot 42, Green Valley",
+      "childrenNames": [
+        "Kavya Kumar (5th-A)",
+        "Rahul Kumar (3rd-A)"
+      ]
+    },
+    {
+      "id": "p2",
+      "parentId": "P102",
+      "name": "Mrs. Sunita Singh",
+      "email": "singh@ashivam.edu",
+      "phone": "+91 91234 56789",
+      "address": "18 Royal Palms",
+      "childrenNames": [
+        "Ananya Singh (4th-A)"
+      ]
+    }
+  ],
+  "examinations": [
+    {
+      "id": "ex1",
+      "examName": "First Term Assessment 2026",
+      "class": "5th",
+      "subject": "Mathematics",
+      "maxMarks": 100,
+      "passingMarks": 35
+    }
+  ],
   "users": [
     {
       "id": "u1",
@@ -687,6 +722,28 @@
       "rollNumber": 157,
       "class": "3rd",
       "section": "A"
+    },
+    {
+      "id": "u_1795094678654",
+      "name": "shayam",
+      "email": "shyam@123",
+      "passwordHash": "$2b$10$ydXTPLAoapkB8CMKk4pJkeQ7L/0NXM42yBHeGbrz4jH8UQrVPGHhW",
+      "role": "student",
+      "studentId": "S158",
+      "rollNumber": 158,
+      "class": "2nd",
+      "section": "A"
+    },
+    {
+      "id": "u_1795094992095",
+      "name": "khaja",
+      "email": "khaja@101",
+      "passwordHash": "$2b$10$ydXTPLAoapkB8CMKk4pJkeQ7L/0NXM42yBHeGbrz4jH8UQrVPGHhW",
+      "role": "student",
+      "studentId": "S159",
+      "rollNumber": 159,
+      "class": "5th",
+      "section": "A"
     }
   ],
   "students": [
@@ -1181,7 +1238,7 @@
       "parentName": "Parent of Varun",
       "parentEmail": "parent126@ashivam.edu",
       "parentPhone": "+91 98765 10126",
-      "attendancePercentage": 94,
+      "attendancePercentage": 100,
       "feeStatus": "Paid"
     },
     {
@@ -1739,37 +1796,77 @@
       "id": "s_1794912210218",
       "studentId": "S156",
       "rollNumber": 156,
-      "attendancePercentage": 95,
-      "feeStatus": "Pending",
       "fullName": "arjun",
       "email": "arjun@101",
       "dob": "2026-11-17",
       "gender": "Male",
       "class": "1st",
       "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "",
       "parentName": "shyam",
       "parentEmail": "",
       "parentPhone": "789456133",
-      "address": "",
-      "bloodGroup": "O+"
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
     },
     {
       "id": "s_1794912613800",
       "studentId": "S157",
       "rollNumber": 157,
-      "attendancePercentage": 95,
-      "feeStatus": "Pending",
       "fullName": "kiran",
       "email": "kiran@123",
       "dob": "2026-11-17",
       "gender": "Male",
       "class": "3rd",
       "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "",
       "parentName": "rajesh",
       "parentEmail": "",
       "parentPhone": "159635778",
-      "address": "",
-      "bloodGroup": "O+"
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_1795094678653",
+      "studentId": "S158",
+      "rollNumber": 158,
+      "fullName": "shayam",
+      "email": "shyam@123",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "2nd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "kadapa",
+      "parentName": "sreenu",
+      "parentEmail": "",
+      "parentPhone": "789456123",
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_1795094992095",
+      "studentId": "S159",
+      "rollNumber": 159,
+      "fullName": "khaja",
+      "email": "khaja@101",
+      "dob": "2016-06-15",
+      "gender": "Male",
+      "class": "5th",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "kadapa",
+      "parentName": "zxcv",
+      "parentEmail": "",
+      "parentPhone": "75369512411",
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
     }
   ],
   "teachers": [
@@ -1782,7 +1879,11 @@
       "phone": "+91 98000 11111",
       "qualification": "Ph.D. Education",
       "experience": "20 Years",
-      "subject": "Administration"
+      "subject": "Administration",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ]
     },
     {
       "id": "t2",
@@ -1793,7 +1894,11 @@
       "phone": "+91 98000 22222",
       "qualification": "M.Ed., M.A.",
       "experience": "15 Years",
-      "subject": "Administration / Supervision"
+      "subject": "Administration / Supervision",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ]
     },
     {
       "id": "t3",
@@ -1804,7 +1909,11 @@
       "phone": "+91 98333 44556",
       "qualification": "M.A. Telugu, B.Ed.",
       "experience": "10 Years",
-      "subject": "Telugu"
+      "subject": "Telugu",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ]
     },
     {
       "id": "t4",
@@ -1815,7 +1924,11 @@
       "phone": "+91 98222 33445",
       "qualification": "M.A. English, D.El.Ed.",
       "experience": "5 Years",
-      "subject": "English"
+      "subject": "English",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ]
     },
     {
       "id": "t5",
@@ -1826,7 +1939,11 @@
       "phone": "+91 98444 55667",
       "qualification": "M.A. Hindi, B.Ed.",
       "experience": "7 Years",
-      "subject": "Hindi"
+      "subject": "Hindi",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ]
     },
     {
       "id": "t6",
@@ -1837,18 +1954,11 @@
       "phone": "+91 98111 22334",
       "qualification": "M.Sc., B.Ed.",
       "experience": "8 Years",
-      "subject": "Maths"
-    },
-    {
-      "id": "t7",
-      "teacherId": "T107",
-      "name": "Dr. Ramesh Kumar",
-      "designation": "Teacher",
-      "email": "ramesh@ashivam.edu",
-      "phone": "+91 98555 66778",
-      "qualification": "M.Sc. Physics, B.Ed.",
-      "experience": "9 Years",
-      "subject": "Science"
+      "subject": "Maths",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ]
     },
     {
       "id": "t8",
@@ -1859,7 +1969,11 @@
       "phone": "+91 98666 77889",
       "qualification": "M.A. History, B.Ed.",
       "experience": "6 Years",
-      "subject": "Social"
+      "subject": "Social",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ]
     },
     {
       "id": "t_1794912723982",
@@ -1868,33 +1982,12 @@
       "designation": "Teacher",
       "email": "umadevi@123",
       "phone": "7894561111",
-      "qualification": "",
-      "experience": "",
-      "subject": "Arts & Crafts"
-    }
-  ],
-  "parents": [
-    {
-      "id": "p1",
-      "parentId": "P101",
-      "name": "Mr. Anil Kumar",
-      "email": "kumar@ashivam.edu",
-      "phone": "+91 98765 43210",
-      "address": "Plot 42, Green Valley",
-      "childrenNames": [
-        "Kavya Kumar (5th-A)",
-        "Rahul Kumar (3rd-A)"
-      ]
-    },
-    {
-      "id": "p2",
-      "parentId": "P102",
-      "name": "Mrs. Sunita Singh",
-      "email": "singh@ashivam.edu",
-      "phone": "+91 91234 56789",
-      "address": "18 Royal Palms",
-      "childrenNames": [
-        "Ananya Singh (4th-A)"
+      "qualification": "B.Ed.",
+      "experience": "1 Year",
+      "subject": "Arts & Crafts",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
       ]
     }
   ],
@@ -1903,61 +1996,71 @@
       "id": "c1",
       "grade": "1st",
       "section": "A",
-      "room": "Room 101"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c2",
       "grade": "1st",
       "section": "B",
-      "room": "Room 102"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c3",
       "grade": "2nd",
       "section": "A",
-      "room": "Room 103"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c4",
       "grade": "2nd",
       "section": "B",
-      "room": "Room 104"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c5",
       "grade": "3rd",
       "section": "A",
-      "room": "Room 105"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c6",
       "grade": "3rd",
       "section": "B",
-      "room": "Room 106"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c7",
       "grade": "4th",
       "section": "A",
-      "room": "Room 107"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c8",
       "grade": "4th",
       "section": "B",
-      "room": "Room 108"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c9",
       "grade": "5th",
       "section": "A",
-      "room": "Room 109"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     },
     {
       "id": "c10",
       "grade": "5th",
       "section": "B",
-      "room": "Room 110"
+      "room": "Room 101",
+      "classTeacherName": "Mrs. Vannani Rao"
     }
   ],
   "attendance": [
@@ -2463,6 +2566,33 @@
       "section": "A",
       "studentId": "s_1794912613800",
       "studentName": "kiran",
+      "status": "Present"
+    },
+    {
+      "id": "att_1795094617397",
+      "date": "2026-11-19",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_126",
+      "studentName": "Varun Shetty",
+      "status": "Present"
+    },
+    {
+      "id": "att_s_1795094678653",
+      "date": "2026-11-19",
+      "class": "2nd",
+      "section": "A",
+      "studentId": "s_1795094678653",
+      "studentName": "shayam",
+      "status": "Present"
+    },
+    {
+      "id": "att_s_1795094992095",
+      "date": "2026-11-19",
+      "class": "5th",
+      "section": "A",
+      "studentId": "s_1795094992095",
+      "studentName": "khaja",
       "status": "Present"
     }
   ],
@@ -2979,16 +3109,24 @@
       "totalAmount": 22000,
       "paidAmount": 0,
       "status": "Pending"
-    }
-  ],
-  "examinations": [
+    },
     {
-      "id": "ex1",
-      "examName": "First Term Assessment 2026",
-      "class": "5th",
-      "subject": "Mathematics",
-      "maxMarks": 100,
-      "passingMarks": 35
+      "id": "f_s_1795094678653",
+      "studentId": "s_1795094678653",
+      "studentName": "shayam",
+      "class": "2nd-A",
+      "totalAmount": 22000,
+      "paidAmount": 0,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_1795094992095",
+      "studentId": "s_1795094992095",
+      "studentName": "khaja",
+      "class": "5th-A",
+      "totalAmount": 22000,
+      "paidAmount": 0,
+      "status": "Pending"
     }
   ],
   "results": [
@@ -3615,6 +3753,7 @@
     }
   ],
   "feedback": [],
+  "inquiries": [],
   "timetables": [
     {
       "id": "tt1",

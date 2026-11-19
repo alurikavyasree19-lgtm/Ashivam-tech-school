@@ -15,7 +15,8 @@ import {
   mapFeeRow,
   mapResultRow,
   mapTimetableRow,
-  mapFeedbackRow
+  mapFeedbackRow,
+  syncDbToJson
 } from './database';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'ashivam-tech-secret-key-2026';
@@ -84,6 +85,7 @@ export function createApp() {
           user = mapUserRow(db.prepare('SELECT * FROM users WHERE id = ?').get(newId));
         }
       }
+      if (user) syncDbToJson(db);
     }
 
     const isStudentCommonPassword =
@@ -230,6 +232,7 @@ export function createApp() {
       return res.status(500).json({ error: 'Database error while adding student' });
     }
 
+    syncDbToJson(db);
     const created = mapStudentRow(db.prepare('SELECT * FROM students WHERE id = ?').get(id));
     res.status(201).json(created);
   });
@@ -275,6 +278,7 @@ export function createApp() {
       return res.status(500).json({ error: 'Failed to update student' });
     }
 
+    syncDbToJson(db);
     const updated = mapStudentRow(db.prepare('SELECT * FROM students WHERE id = ?').get(existing.id));
     res.json(updated);
   });
@@ -294,6 +298,7 @@ export function createApp() {
       db.exec('ROLLBACK');
       return res.status(500).json({ error: 'Failed to delete student' });
     }
+    syncDbToJson(db);
     res.json({ success: true });
   });
 
@@ -346,6 +351,7 @@ export function createApp() {
       return res.status(500).json({ error: 'Failed to add teacher' });
     }
 
+    syncDbToJson(db);
     res.status(201).json(mapTeacherRow(db.prepare('SELECT * FROM teachers WHERE id = ?').get(id)));
   });
 
@@ -384,6 +390,7 @@ export function createApp() {
       return res.status(500).json({ error: 'Failed to update teacher' });
     }
 
+    syncDbToJson(db);
     res.json(mapTeacherRow(db.prepare('SELECT * FROM teachers WHERE id = ?').get(existing.id)));
   });
 
@@ -403,6 +410,7 @@ export function createApp() {
       db.exec('ROLLBACK');
       return res.status(500).json({ error: 'Failed to delete teacher' });
     }
+    syncDbToJson(db);
     res.json({ success: true });
   });
 
@@ -476,6 +484,7 @@ export function createApp() {
       : student.attendancePercentage;
 
     db.prepare('UPDATE students SET attendance_percentage = ? WHERE id = ?').run(pct, student.id);
+    syncDbToJson(db);
     res.json({ success: true, attendancePercentage: pct, status: cleanStatus });
   });
 
@@ -519,6 +528,7 @@ export function createApp() {
       db.exec('ROLLBACK');
       return res.status(500).json({ error: 'Failed to update fee record' });
     }
+    syncDbToJson(db);
     res.json(mapFeeRow(db.prepare('SELECT * FROM fees WHERE id = ?').get(fee.id)));
   });
 
@@ -568,6 +578,7 @@ export function createApp() {
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(id, student.id, student.fullName, clsSec, subject, marksObtained, maxMarks, grade, remarks);
 
+    syncDbToJson(db);
     res.status(201).json(mapResultRow(db.prepare('SELECT * FROM results WHERE id = ?').get(id)));
   });
 
@@ -586,6 +597,7 @@ export function createApp() {
       }
     }
     db.prepare('DELETE FROM results WHERE id = ?').run(req.params.id);
+    syncDbToJson(db);
     res.json({ success: true });
   });
 
@@ -604,6 +616,7 @@ export function createApp() {
     const category = String(req.body.category || 'All');
 
     db.prepare('INSERT INTO notices (id, title, description, category, date) VALUES (?, ?, ?, ?, ?)').run(id, title, description, category, date);
+    syncDbToJson(db);
     res.status(201).json(db.prepare('SELECT * FROM notices WHERE id = ?').get(id));
   });
 
@@ -611,6 +624,7 @@ export function createApp() {
     if (req.user.role !== 'admin') return res.status(403).json({ error: 'Admin only' });
     const db = getDb();
     db.prepare('DELETE FROM notices WHERE id = ?').run(req.params.id);
+    syncDbToJson(db);
     res.json({ success: true });
   });
 
@@ -644,6 +658,7 @@ export function createApp() {
     if (!existing) return res.status(404).json({ error: 'Timetable not found' });
     const nextSchedule = Array.isArray(req.body.schedule) ? req.body.schedule : mapTimetableRow(existing).schedule;
     db.prepare('UPDATE timetables SET schedule_json = ? WHERE id = ?').run(JSON.stringify(nextSchedule), req.params.id);
+    syncDbToJson(db);
     res.json(mapTimetableRow(db.prepare('SELECT * FROM timetables WHERE id = ?').get(req.params.id)));
   });
 
@@ -659,6 +674,7 @@ export function createApp() {
     db.prepare('INSERT INTO feedback (id, date, sender, sender_email, teacher_name, message) VALUES (?, ?, ?, ?, ?, ?)').run(
       id, date, sender, senderEmail, teacherName, message
     );
+    syncDbToJson(db);
     const feedback = mapFeedbackRow(db.prepare('SELECT * FROM feedback WHERE id = ?').get(id));
     res.status(201).json({ success: true, message: 'Sent!', feedback });
   });
@@ -722,6 +738,7 @@ export function createApp() {
       INSERT INTO inquiries (id, name, email, phone, message, status, date)
       VALUES (?, ?, ?, ?, ?, 'New', ?)
     `).run(id, name, email, phone, message, date);
+    syncDbToJson(db);
     const inquiry = db.prepare('SELECT * FROM inquiries WHERE id = ?').get(id);
     res.status(201).json({ success: true, inquiry });
   });
@@ -739,6 +756,7 @@ export function createApp() {
     if (!existing) return res.status(404).json({ error: 'Inquiry not found' });
     const nextStatus = String(req.body.status || 'Contacted');
     db.prepare('UPDATE inquiries SET status = ? WHERE id = ?').run(nextStatus, req.params.id);
+    syncDbToJson(db);
     res.json(db.prepare('SELECT * FROM inquiries WHERE id = ?').get(req.params.id));
   });
 
@@ -831,6 +849,96 @@ export function createApp() {
     }
   });
 
+  app.get('/api/database/json', authenticateToken, (req: any, res) => {
+    if (req.user.role !== 'admin') return res.status(403).json({ error: 'Admin only' });
+    const db = getDb();
+    const q = String(req.query.q || '').trim().toLowerCase();
+    const tableFilter = String(req.query.table || 'all').trim().toLowerCase();
+
+    const allStudents = db.prepare('SELECT * FROM students ORDER BY roll_number DESC').all().map(mapStudentRow);
+    const allTeachers = db.prepare('SELECT * FROM teachers ORDER BY rowid DESC').all().map(mapTeacherRow);
+    const allClasses = db.prepare('SELECT * FROM classes ORDER BY grade ASC, section ASC').all().map(mapClassRow);
+    const allFees = db.prepare('SELECT * FROM fees ORDER BY rowid DESC').all().map(mapFeeRow);
+    const allAttendance = db.prepare('SELECT * FROM attendance ORDER BY rowid DESC').all().map(mapAttendanceRow);
+    const allResults = db.prepare('SELECT * FROM results ORDER BY rowid DESC').all().map(mapResultRow);
+    const allTimetables = db.prepare('SELECT * FROM timetables ORDER BY class_section ASC').all().map(mapTimetableRow);
+    const allNotices = db.prepare('SELECT * FROM notices ORDER BY date DESC, rowid DESC').all();
+    const allFeedback = db.prepare('SELECT * FROM feedback ORDER BY date DESC, rowid DESC').all().map(mapFeedbackRow);
+    const allInquiries = db.prepare('SELECT * FROM inquiries ORDER BY date DESC, rowid DESC').all();
+    const allUsers = db.prepare('SELECT * FROM users ORDER BY rowid DESC').all().map((row: any) => {
+      const mapped = mapUserRow(row)!;
+      return { ...mapped, passwordHash: '•••••••• (bcrypt protected)' };
+    });
+
+    const matchesQuery = (obj: any) => !q || JSON.stringify(obj).toLowerCase().includes(q);
+
+    const students = allStudents.filter(matchesQuery);
+    const teachers = allTeachers.filter(matchesQuery);
+    const classes = allClasses.filter(matchesQuery);
+    const timetableMatches = allTimetables.filter(matchesQuery);
+    const notices = allNotices.filter(matchesQuery);
+    const feedback = allFeedback.filter(matchesQuery);
+    const inquiries = allInquiries.filter(matchesQuery);
+
+    const matchedStudentIds = new Set(students.map((s: any) => s.id));
+    const matchedStudentCodes = new Set(students.map((s: any) => s.studentId));
+    const matchedTeacherCodes = new Set(teachers.map((t: any) => t.teacherId));
+
+    const fees = allFees.filter((f: any) => !q || matchedStudentIds.has(f.studentId) || matchesQuery(f));
+    const attendance = allAttendance.filter((a: any) => !q || matchedStudentIds.has(a.studentId) || matchesQuery(a));
+    const results = allResults.filter((r: any) => !q || matchedStudentIds.has(r.studentId) || matchesQuery(r));
+    const users = allUsers.filter(
+      (u: any) =>
+        !q ||
+        (u.studentId && matchedStudentCodes.has(u.studentId)) ||
+        (u.teacherId && matchedTeacherCodes.has(u.teacherId)) ||
+        matchesQuery(u)
+    );
+
+    const counts = {
+      teachers: allTeachers.length,
+      students: allStudents.length,
+      users: allUsers.length,
+      classes: allClasses.length,
+      fees: allFees.length,
+      attendance: allAttendance.length,
+      results: allResults.length,
+      timetables: allTimetables.length,
+      notices: allNotices.length,
+      feedback: allFeedback.length,
+      inquiries: allInquiries.length
+    };
+
+    const collections: Record<string, any[]> = {
+      teachers,
+      students,
+      users,
+      classes,
+      fees,
+      attendance,
+      results,
+      timetables: timetableMatches,
+      notices,
+      feedback,
+      inquiries
+    };
+
+    const filteredData =
+      tableFilter !== 'all' && collections[tableFilter]
+        ? { [tableFilter]: collections[tableFilter] }
+        : collections;
+
+    res.json({
+      sourceFile: 'data/db.json (synced with SQLite ashivam.db)',
+      syncedAt: new Date().toISOString(),
+      activeTable: tableFilter,
+      counts,
+      totalStudents: allStudents.length,
+      filteredStudents: students.length,
+      ...filteredData
+    });
+  });
+
   app.get('/api/health', (req, res) => {
     const db = getDb();
     const count = (tbl: string) => (db.prepare(`SELECT COUNT(*) as cnt FROM ${tbl}`).get() as { cnt: number }).cnt;
@@ -848,6 +956,10 @@ export function createApp() {
         inquiries: count('inquiries')
       }
     });
+  });
+
+  app.get('/api', (_req, res) => {
+    res.json({ status: 'ok', service: 'ASHIVAM TECH ERP API' });
   });
 
   // Ensure API errors always return JSON instead of HTML/plain text

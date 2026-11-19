@@ -10,10 +10,10 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api"
+      "destination": "/api?__vercel_path=$1"
     },
     {
-      "source": "/((?!api/).*)",
+      "source": "/((?!api(?:/|$)|assets/|src/).*)",
       "destination": "/index.html"
     }
   ]

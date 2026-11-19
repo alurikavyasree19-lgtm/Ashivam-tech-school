@@ -1,8 +1,27 @@
-import { DatabaseSync } from 'node:sqlite';
+import type { DatabaseSync as DatabaseSyncInstance } from 'node:sqlite';
+import { createRequire } from 'module';
 import path from 'path';
 import fs from 'fs';
 import bcrypt from 'bcryptjs';
 import { fileURLToPath } from 'url';
+
+type DatabaseSync = DatabaseSyncInstance;
+
+function createSqliteDatabase(dbFilePath: string): DatabaseSync {
+  try {
+    const baseUrl =
+      typeof import.meta !== 'undefined' && import.meta.url
+        ? import.meta.url
+        : path.join(process.cwd(), 'package.json');
+    const req = createRequire(baseUrl);
+    const sqliteMod = req('node:sqlite');
+    return new sqliteMod.DatabaseSync(dbFilePath);
+  } catch (err: any) {
+    throw new Error(
+      `Failed to load built-in node:sqlite (${err?.message || 'module unavailable'}). Ensure Node.js 22.x is selected in Vercel Project Settings -> General -> Node.js Version.`
+    );
+  }
+}
 
 const __filename = typeof import.meta !== 'undefined' && import.meta.url ? fileURLToPath(import.meta.url) : '';
 const __dirname = __filename ? path.dirname(__filename) : process.cwd();
@@ -590,7 +609,7 @@ export function getDb(): DatabaseSync {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 
-  const db = new DatabaseSync(SQLITE_DB_FILE);
+  const db = createSqliteDatabase(SQLITE_DB_FILE);
   createTables(db);
 
   const countRow = db.prepare('SELECT COUNT(*) as cnt FROM students').get() as { cnt: number };
@@ -617,6 +636,9 @@ export function getDb(): DatabaseSync {
   }
 
   dbInstance = db;
+  if (!process.env.VERCEL) {
+    syncDbToJson(db);
+  }
   return db;
 }
 
@@ -744,4 +766,65 @@ export function mapFeedbackRow(row: any) {
     teacherName: row.teacher_name,
     message: row.message
   };
+}
+
+export function syncDbToJson(dbArg?: DatabaseSync) {
+  if (process.env.VERCEL) return;
+  try {
+    const db = dbArg || dbInstance || getDb();
+    let existingExtra: Record<string, any> = {};
+    if (fs.existsSync(LEGACY_JSON_FILE)) {
+      try {
+        const prev = JSON.parse(fs.readFileSync(LEGACY_JSON_FILE, 'utf-8'));
+        if (prev && typeof prev === 'object') {
+          if (prev.seedVersion !== undefined) existingExtra.seedVersion = prev.seedVersion;
+          if (prev.parents !== undefined) existingExtra.parents = prev.parents;
+          if (prev.examinations !== undefined) existingExtra.examinations = prev.examinations;
+        }
+      } catch {
+        // Ignore malformed legacy metadata
+      }
+    }
+
+    const users = db.prepare('SELECT * FROM users ORDER BY rowid ASC').all().map(mapUserRow);
+    const students = db.prepare('SELECT * FROM students ORDER BY roll_number ASC').all().map(mapStudentRow);
+    const teachers = db.prepare('SELECT * FROM teachers ORDER BY teacher_id ASC').all().map(mapTeacherRow);
+    const classes = db.prepare('SELECT * FROM classes ORDER BY grade ASC, section ASC').all().map((row: any) => ({
+      id: row.id,
+      grade: row.grade,
+      section: row.section,
+      room: row.room_number,
+      classTeacherName: row.class_teacher_name
+    }));
+    const attendance = db.prepare('SELECT * FROM attendance ORDER BY rowid ASC').all().map(mapAttendanceRow);
+    const fees = db.prepare('SELECT * FROM fees ORDER BY rowid ASC').all().map(mapFeeRow);
+    const results = db.prepare('SELECT * FROM results ORDER BY rowid ASC').all().map(mapResultRow);
+    const notices = db.prepare('SELECT * FROM notices ORDER BY date DESC, rowid DESC').all();
+    const feedback = db.prepare('SELECT * FROM feedback ORDER BY date DESC, rowid DESC').all().map(mapFeedbackRow);
+    const inquiries = db.prepare('SELECT * FROM inquiries ORDER BY date DESC, rowid DESC').all();
+    const timetables = db.prepare('SELECT * FROM timetables ORDER BY class_section ASC').all().map(mapTimetableRow);
+
+    const snapshot = {
+      ...existingExtra,
+      users,
+      students,
+      teachers,
+      classes,
+      attendance,
+      fees,
+      examinations: existingExtra.examinations || [],
+      results,
+      notices,
+      feedback,
+      inquiries,
+      timetables
+    };
+
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    fs.writeFileSync(LEGACY_JSON_FILE, JSON.stringify(snapshot, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('Failed to sync SQLite snapshot to data/db.json:', err);
+  }
 }

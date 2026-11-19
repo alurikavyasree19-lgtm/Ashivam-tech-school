@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Database, Play, Table, KeyRound, AlertCircle, BookOpen } from 'lucide-react';
+import { Database, Play, Table, KeyRound, AlertCircle, BookOpen, Search, Copy, Check, RefreshCw } from 'lucide-react';
 import { DbSchemaResponse, DbSchemaTable } from '../types';
 
 interface DatabaseLabProps {
@@ -12,13 +12,13 @@ const SQL_LESSONS: {
   sql: string;
 }[] = [
   {
-    title: '01. INNER JOIN: Students & Tuition Ledger',
-    concept: 'Combines rows from students and fees using the foreign key f.student_id = s.id.',
-    sql: `SELECT s.roll_number, s.full_name, s.class_grade || '-' || s.section AS class_sec, f.total_amount, f.paid_amount, f.status
+    title: '01. INNER JOIN: Latest Students & Tuition Ledger',
+    concept: 'Combines rows from students and fees using f.student_id = s.id, sorted newest-first so newly added admissions appear at the top.',
+    sql: `SELECT s.roll_number, s.student_id, s.full_name, s.email, s.class_grade || '-' || s.section AS class_sec, f.total_amount, f.paid_amount, f.status
 FROM students s
 INNER JOIN fees f ON f.student_id = s.id
-ORDER BY s.roll_number ASC
-LIMIT 20;`
+ORDER BY s.roll_number DESC
+LIMIT 25;`
   },
   {
     title: '02. GROUP BY: Section Strength & Avg Attendance',
@@ -77,6 +77,7 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
   const [activeLessonConcept, setActiveLessonConcept] = useState(SQL_LESSONS[0].concept);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState('');
+  const [resultView, setResultView] = useState<'table' | 'code'>('code');
   const [queryResult, setQueryResult] = useState<{
     columns: string[];
     rows: Record<string, any>[];
@@ -85,9 +86,52 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
     durationMs: number;
   } | null>(null);
 
+  const [jsonSearch, setJsonSearch] = useState('');
+  const [activeJsonTable, setActiveJsonTable] = useState<string>('teachers');
+  const [liveSync, setLiveSync] = useState<boolean>(true);
+  const [jsonSnapshot, setJsonSnapshot] = useState<any>(null);
+  const [jsonLoading, setJsonLoading] = useState(false);
+  const [copiedJson, setCopiedJson] = useState(false);
+
+  const JSON_TABLES: { key: string; label: string }[] = [
+    { key: 'all', label: 'All Tables' },
+    { key: 'teachers', label: 'Teachers' },
+    { key: 'students', label: 'Students' },
+    { key: 'users', label: 'Users' },
+    { key: 'classes', label: 'Classes' },
+    { key: 'fees', label: 'Fees' },
+    { key: 'attendance', label: 'Attendance' },
+    { key: 'results', label: 'Results' },
+    { key: 'timetables', label: 'Timetables' },
+    { key: 'notices', label: 'Notices' },
+    { key: 'feedback', label: 'Feedback' },
+    { key: 'inquiries', label: 'Inquiries' }
+  ];
+
   useEffect(() => {
     loadSchema();
   }, [token]);
+
+  useEffect(() => {
+    loadJsonSnapshot(jsonSearch, activeJsonTable);
+  }, [token, activeJsonTable]);
+
+  useEffect(() => {
+    if (!liveSync) return;
+    const interval = setInterval(() => {
+      loadJsonSnapshot(jsonSearch, activeJsonTable, true);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [liveSync, jsonSearch, activeJsonTable, token]);
+
+  const parseJsonSafe = async (res: Response) => {
+    const text = await res.text();
+    try {
+      return text ? JSON.parse(text) : {};
+    } catch {
+      return { error: text || `HTTP ${res.status}` };
+    }
+  };
 
   const loadSchema = async () => {
     setSchemaLoading(true);
@@ -96,7 +140,7 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
       const res = await fetch('/api/database/schema', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const data = await res.json();
+      const data = await parseJsonSafe(res);
       if (!res.ok) throw new Error(data.error || 'Failed to load database schema');
       setSchema(data);
       if (data.tables?.length > 0 && !selectedTable) {
@@ -123,7 +167,7 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
         },
         body: JSON.stringify({ sql: sqlToRun })
       });
-      const data = await res.json();
+      const data = await parseJsonSafe(res);
       if (!res.ok) throw new Error(data.error || 'Query execution failed');
       setQueryResult(data);
     } catch (err: any) {
@@ -134,10 +178,40 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
     }
   };
 
+  const loadJsonSnapshot = async (searchVal: string, tableName = activeJsonTable, silent = false) => {
+    if (!silent) setJsonLoading(true);
+    try {
+      const params = new URLSearchParams();
+      if (searchVal.trim()) params.set('q', searchVal.trim());
+      if (tableName) params.set('table', tableName);
+      const qs = params.toString() ? `?${params.toString()}` : '';
+      const res = await fetch(`/api/database/json${qs}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await parseJsonSafe(res);
+      if (res.ok) {
+        setJsonSnapshot(data);
+      }
+    } finally {
+      if (!silent) setJsonLoading(false);
+    }
+  };
+
+  const handleCopyJson = () => {
+    if (!jsonSnapshot) return;
+    navigator.clipboard?.writeText(JSON.stringify(jsonSnapshot, null, 2));
+    setCopiedJson(true);
+    setTimeout(() => setCopiedJson(false), 2000);
+  };
+
   const handlePreviewTable = (tableName: string) => {
-    const previewSql = `SELECT * FROM ${tableName} LIMIT 15;`;
+    const previewSql =
+      tableName === 'students'
+        ? `SELECT * FROM students ORDER BY roll_number DESC LIMIT 25;`
+        : `SELECT * FROM ${tableName} ORDER BY rowid DESC LIMIT 25;`;
     setSqlText(previewSql);
-    setActiveLessonConcept(`Inspecting live rows inside the "${tableName}" SQLite table.`);
+    setActiveLessonConcept(`Inspecting latest rows inside the "${tableName}" SQLite table (newest first).`);
+    setActiveJsonTable(tableName);
     runSql(previewSql);
   };
 
@@ -299,16 +373,38 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
 
         {/* Right: Interactive SQL Learning Lab */}
         <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl overflow-hidden">
-          <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between gap-4">
+          <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between gap-4 flex-wrap">
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-blue-700" />
               <span>SQL Query Practice Lab (Read-Only)</span>
             </h3>
-            {queryResult && (
-              <span className="font-mono text-xs text-slate-500 tabular-nums">
-                {queryResult.totalRows} row{queryResult.totalRows === 1 ? '' : 's'} · {queryResult.durationMs} ms
-              </span>
-            )}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1 p-0.5 bg-slate-100 rounded-md text-[11px] font-semibold">
+                <button
+                  type="button"
+                  onClick={() => setResultView('table')}
+                  className={`px-2.5 py-1 rounded transition-colors ${
+                    resultView === 'table' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Table View
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setResultView('code')}
+                  className={`px-2.5 py-1 rounded transition-colors ${
+                    resultView === 'code' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Code (JSON)
+                </button>
+              </div>
+              {queryResult && (
+                <span className="font-mono text-xs text-slate-500 tabular-nums">
+                  {queryResult.totalRows} row{queryResult.totalRows === 1 ? '' : 's'} · {queryResult.durationMs} ms
+                </span>
+              )}
+            </div>
           </div>
 
           <div className="p-5 space-y-4">
@@ -372,13 +468,17 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
               </div>
             )}
 
-            {/* Results Table */}
+            {/* Results Table or Code View */}
             {queryResult && (
               <div className="border border-slate-200 rounded-lg overflow-hidden">
                 {queryResult.rows.length === 0 ? (
                   <div className="p-6 text-center text-xs text-slate-500">
                     Query succeeded and returned 0 matching rows.
                   </div>
+                ) : resultView === 'code' ? (
+                  <pre className="p-4 bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto max-h-96 leading-relaxed">
+                    {JSON.stringify(queryResult.rows, null, 2)}
+                  </pre>
                 ) : (
                   <div className="overflow-x-auto max-h-80">
                     <table className="w-full text-left text-xs">
@@ -422,6 +522,120 @@ export default function DatabaseLab({ token }: DatabaseLabProps) {
               </div>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Connected Live data/db.json Code Inspector */}
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div className="px-5 py-4 border-b border-slate-200 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div>
+            <h3 className="text-sm font-bold text-slate-900">
+              Live Database JSON Code (`data/db.json` synced with SQLite)
+            </h3>
+            <p className="text-xs text-slate-500 mt-0.5 tabular-nums">
+              {jsonSnapshot
+                ? `Viewing "${activeJsonTable}" · ${
+                    activeJsonTable === 'all'
+                      ? `${jsonSnapshot.counts?.teachers ?? 0} teachers, ${jsonSnapshot.counts?.students ?? 0} students, ${jsonSnapshot.counts?.users ?? 0} users`
+                      : `${Array.isArray(jsonSnapshot[activeJsonTable]) ? jsonSnapshot[activeJsonTable].length : 0} matching records`
+                  }${jsonSnapshot.syncedAt ? ` · Updated ${new Date(jsonSnapshot.syncedAt).toLocaleTimeString()}` : ''}`
+                : 'Loading live JSON snapshot...'}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative">
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+              <input
+                type="text"
+                value={jsonSearch}
+                onChange={e => {
+                  const val = e.target.value;
+                  setJsonSearch(val);
+                  loadJsonSnapshot(val, activeJsonTable);
+                }}
+                placeholder="Search teachers, students, classes, email..."
+                className="pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-xs w-64 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setLiveSync(prev => !prev)}
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-colors ${
+                liveSync
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
+                  : 'bg-slate-50 border-slate-300 text-slate-600'
+              }`}
+            >
+              {liveSync ? 'Live Sync: ON (5s)' : 'Live Sync: OFF'}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                loadSchema();
+                loadJsonSnapshot(jsonSearch, activeJsonTable);
+              }}
+              className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-lg inline-flex items-center gap-1.5"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${jsonLoading ? 'animate-spin' : ''}`} />
+              <span>Refresh</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleCopyJson}
+              className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-lg inline-flex items-center gap-1.5"
+            >
+              {copiedJson ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copiedJson ? 'Copied' : 'Copy JSON'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Table Category Selector */}
+        <div className="px-5 py-2.5 bg-slate-50 border-b border-slate-200 flex flex-wrap gap-1.5">
+          {JSON_TABLES.map(tbl => {
+            const isActive = activeJsonTable === tbl.key;
+            const countVal =
+              tbl.key === 'all'
+                ? Object.values(jsonSnapshot?.counts || {}).reduce((sum: number, n: any) => sum + Number(n || 0), 0)
+                : jsonSnapshot?.counts?.[tbl.key];
+            return (
+              <button
+                type="button"
+                key={tbl.key}
+                onClick={() => setActiveJsonTable(tbl.key)}
+                className={`px-2.5 py-1 rounded-md text-xs font-medium border transition-colors inline-flex items-center gap-1.5 ${
+                  isActive
+                    ? 'bg-blue-700 text-white border-blue-700'
+                    : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                <span>{tbl.label}</span>
+                {countVal !== undefined && (
+                  <span
+                    className={`font-mono text-[10px] tabular-nums ${
+                      isActive ? 'text-blue-100' : 'text-slate-400'
+                    }`}
+                  >
+                    {String(countVal)}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="bg-slate-900 text-slate-100 p-4 overflow-x-auto max-h-[28rem]">
+          {jsonLoading && !jsonSnapshot ? (
+            <p className="font-mono text-xs text-slate-400">Loading database JSON...</p>
+          ) : (
+            <pre className="font-mono text-xs leading-relaxed">
+              {JSON.stringify(jsonSnapshot, null, 2)}
+            </pre>
+          )}
         </div>
       </div>
     </div>
