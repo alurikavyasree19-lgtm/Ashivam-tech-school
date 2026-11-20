@@ -39,7 +39,36 @@ const TABLE_DESCRIPTIONS: Record<string, string> = {
 
 export function createApp() {
   const app = express();
-  app.use(express.json());
+
+  app.use((req: any, _res, next) => {
+    if (typeof req.url === 'string') {
+      try {
+        const parsed = new URL(req.url, 'http://localhost');
+        const rewrittenPath = parsed.searchParams.get('__vercel_path');
+        if (rewrittenPath !== null) {
+          parsed.searchParams.delete('__vercel_path');
+          const cleanSubPath = rewrittenPath.replace(/^\/+/, '');
+          const cleanQuery = parsed.searchParams.toString();
+          if (parsed.pathname === '/api' || parsed.pathname === '/api/index.ts' || parsed.pathname === '/api/') {
+            req.url = `/api${cleanSubPath ? `/${cleanSubPath}` : ''}${cleanQuery ? `?${cleanQuery}` : ''}`;
+          } else {
+            req.url = `${parsed.pathname}${cleanQuery ? `?${cleanQuery}` : ''}`;
+          }
+        }
+      } catch {
+        // Keep original req.url if URL parsing fails
+      }
+    }
+    next();
+  });
+
+  const jsonParser = express.json();
+  app.use((req: any, res, next) => {
+    if (req.body !== undefined && typeof req.body === 'object' && req.readableEnded) {
+      return next();
+    }
+    return jsonParser(req, res, next);
+  });
 
   // Ensure SQLite schema & seed/migrate cleanly on first API request
   app.use('/api', async (_req, _res, next) => {
@@ -97,18 +126,37 @@ export function createApp() {
       if (user) syncDbToJson(db);
     }
 
+    if (!user) {
+      return res.status(401).json({
+        error: `No account found for "${cleanEmail}". Create this student/teacher in Admin Portal first (student password is always student123).`
+      });
+    }
+
     const isStudentCommonPassword =
-      user?.role === 'student' &&
-      cleanPassword.toLowerCase() === 'student123' &&
-      bcrypt.compareSync('student123', user.passwordHash);
+      user.role === 'student' &&
+      cleanPassword.toLowerCase() === 'student123';
 
     const isTeacherCommonPassword =
-      user?.role === 'teacher' &&
-      cleanPassword.toLowerCase() === 'teacher123' &&
-      bcrypt.compareSync('teacher123', user.passwordHash);
+      user.role === 'teacher' &&
+      cleanPassword.toLowerCase() === 'teacher123';
 
-    if (!user || (!bcrypt.compareSync(cleanPassword, user.passwordHash) && !isStudentCommonPassword && !isTeacherCommonPassword)) {
-      return res.status(401).json({ error: 'Invalid email or password' });
+    const passwordMatches =
+      isStudentCommonPassword ||
+      isTeacherCommonPassword ||
+      (user.passwordHash ? bcrypt.compareSync(cleanPassword, user.passwordHash) : false);
+
+    if (!passwordMatches) {
+      if (user.role === 'student') {
+        return res.status(401).json({
+          error: `Incorrect password for ${user.email}. All student logins use the shared password: student123`
+        });
+      }
+      if (user.role === 'teacher') {
+        return res.status(401).json({
+          error: `Incorrect password for ${user.email}. All teacher logins use the shared password: teacher123`
+        });
+      }
+      return res.status(401).json({ error: 'Invalid password' });
     }
 
     const tokenPayload = {
@@ -280,7 +328,9 @@ export function createApp() {
       db.prepare(`UPDATE fees SET student_name = ?, class_section = ? WHERE student_id = ?`).run(nextFullName, `${nextClass}-${nextSection}`, existing.id);
       db.prepare(`UPDATE results SET student_name = ?, class_section = ? WHERE student_id = ?`).run(nextFullName, `${nextClass}-${nextSection}`, existing.id);
       db.prepare(`UPDATE attendance SET student_name = ?, class_grade = ?, section = ? WHERE student_id = ?`).run(nextFullName, nextClass, nextSection, existing.id);
-      db.prepare(`UPDATE users SET name = ?, email = ?, class_grade = ?, section = ? WHERE role = 'student' AND student_id = ?`).run(nextFullName, nextEmail, nextClass, nextSection, existing.studentId);
+      db.prepare(
+        `UPDATE users SET name = ?, email = ?, password_hash = ?, class_grade = ?, section = ? WHERE role = 'student' AND (student_id = ? OR LOWER(TRIM(email)) = ?)`
+      ).run(nextFullName, nextEmail, commonStudentPasswordHash, nextClass, nextSection, existing.studentId, existing.email.toLowerCase());
       db.exec('COMMIT');
     } catch (err) {
       db.exec('ROLLBACK');
