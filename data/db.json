@@ -744,6 +744,43 @@
       "rollNumber": 159,
       "class": "5th",
       "section": "A"
+    },
+    {
+      "id": "u_1795180762621",
+      "name": "jasu",
+      "email": "jasu@121",
+      "passwordHash": "$2b$10$nQYLZq5iXDJym/uyB7rjbuPp3Sqa0m7eJhecvnZBvVK/GN9DsUobK",
+      "role": "student",
+      "studentId": "S160",
+      "rollNumber": 160,
+      "class": "1st",
+      "section": "A"
+    },
+    {
+      "id": "u_teach_1795181100064",
+      "name": "mrs.umadevi",
+      "email": "umadevi@123",
+      "passwordHash": "$2b$10$UHaMHt0L9wKcoTvnLKw3ZuJou.ZaEMVrT0uRzqPEKoO4WhU9danPy",
+      "role": "teacher",
+      "teacherId": "T109",
+      "assignedClasses": [
+        "3rd-A",
+        "4th-A"
+      ],
+      "subjects": [
+        "Arts & Crafts"
+      ]
+    },
+    {
+      "id": "u_1795182760761",
+      "name": "Ritik",
+      "email": "ritik@123",
+      "passwordHash": "$2b$10$cXcqMdqYFyyYvgANhwqKFuA7d.CJegpQ48V12vT5SlK55zibAHro6",
+      "role": "student",
+      "studentId": "S161",
+      "rollNumber": 161,
+      "class": "3rd",
+      "section": "A"
     }
   ],
   "students": [
@@ -1867,6 +1904,44 @@
       "parentPhone": "75369512411",
       "attendancePercentage": 95,
       "feeStatus": "Pending"
+    },
+    {
+      "id": "s_1795180762621",
+      "studentId": "S160",
+      "rollNumber": 160,
+      "fullName": "jasu",
+      "email": "jasu@121",
+      "dob": "2016-06-15",
+      "gender": "Female",
+      "class": "1st",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "mkm",
+      "parentName": "ramu",
+      "parentEmail": "",
+      "parentPhone": "789456123",
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
+    },
+    {
+      "id": "s_1795182760761",
+      "studentId": "S161",
+      "rollNumber": 161,
+      "fullName": "Ritik",
+      "email": "ritik@123",
+      "dob": "2016-05-15",
+      "gender": "Male",
+      "class": "3rd",
+      "section": "A",
+      "academicYear": "2025-2026",
+      "bloodGroup": "O+",
+      "address": "Green Valley",
+      "parentName": "Parent of Ritik",
+      "parentEmail": "",
+      "parentPhone": "+91 98765 00161",
+      "attendancePercentage": 95,
+      "feeStatus": "Pending"
     }
   ],
   "teachers": [
@@ -2594,6 +2669,24 @@
       "studentId": "s_1795094992095",
       "studentName": "khaja",
       "status": "Present"
+    },
+    {
+      "id": "att_s_1795180762621",
+      "date": "2026-11-20",
+      "class": "1st",
+      "section": "A",
+      "studentId": "s_1795180762621",
+      "studentName": "jasu",
+      "status": "Present"
+    },
+    {
+      "id": "att_s_1795182760761",
+      "date": "2026-11-20",
+      "class": "3rd",
+      "section": "A",
+      "studentId": "s_1795182760761",
+      "studentName": "Ritik",
+      "status": "Present"
     }
   ],
   "fees": [
@@ -3124,6 +3217,24 @@
       "studentId": "s_1795094992095",
       "studentName": "khaja",
       "class": "5th-A",
+      "totalAmount": 22000,
+      "paidAmount": 0,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_1795180762621",
+      "studentId": "s_1795180762621",
+      "studentName": "jasu",
+      "class": "1st-A",
+      "totalAmount": 22000,
+      "paidAmount": 0,
+      "status": "Pending"
+    },
+    {
+      "id": "f_s_1795182760761",
+      "studentId": "s_1795182760761",
+      "studentName": "Ritik",
+      "class": "3rd-A",
       "totalAmount": 22000,
       "paidAmount": 0,
       "status": "Pending"
